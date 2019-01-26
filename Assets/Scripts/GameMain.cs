@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameMain : MonoBehaviour
 {
     [SerializeField] private Pawn playerPawnPrefab;
+    [SerializeField] private Pawn nimoPawnPrefab;
     [SerializeField] private List<Stage> stages = new List<Stage>();
     [SerializeField] private FadeLayer fadeLayer;
     private PawnManager pawnManager;
@@ -31,6 +32,7 @@ public class GameMain : MonoBehaviour
 
         yield return null;
         CreatePlayerPawn();
+        CreateNimoPawn();
 
         CreateCurrentIndexStage();
         yield return null;
@@ -45,6 +47,12 @@ public class GameMain : MonoBehaviour
         Singleton.instance.playerPawn.controller = new PlayerPawnController();
         Singleton.instance.playerPawn.controller.Init(Singleton.instance.playerPawn);
 
+    }
+
+    private void CreateNimoPawn()
+    {
+        Singleton.instance.nimoPawn = PawnFactory.CreatePawn(nimoPawnPrefab);
+        Singleton.instance.nimoPawn.controller = new EmptyController();
     }
 
     private void SetupEvent()

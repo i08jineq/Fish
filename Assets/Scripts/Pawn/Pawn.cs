@@ -27,8 +27,7 @@ public class Pawn : MonoBehaviour
 
         if (pawnState.Hp < 0)
         {
-            Singleton.instance.gameEvent.deadEvent.Invoke(this);
-            Destroy(gameObject);
+            Dead();
         }
     }
 
@@ -39,7 +38,7 @@ public class Pawn : MonoBehaviour
         Singleton.instance.gameEvent.onSpawnedAttackObject.Invoke(attackObject);
     }
 
-    public void Move(Vector3 direction)
+    public virtual void Move(Vector3 direction)
     {
         transform.position += direction * pawnState.Speed * Time.deltaTime;
     }
@@ -47,6 +46,12 @@ public class Pawn : MonoBehaviour
     public void FaceTo(Vector3 position)
     {
         transform.LookAt(position);
+    }
+
+    protected virtual void Dead()
+    {
+        Singleton.instance.gameEvent.deadEvent.Invoke(this);
+        Destroy(gameObject);
     }
 
 }
