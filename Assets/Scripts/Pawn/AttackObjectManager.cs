@@ -10,7 +10,7 @@ public class AttackObjectManager
     public void Init()
     {
         Singleton.instance.gameEvent.onSpawnedAttackObject.AddListener(_onSpawnAttackObject);
-        Singleton.instance.gameEvent.onDeadAttackObject.AddListener(_onDeadAttackObject);
+        Singleton.instance.gameEvent.onAttackObjectDestroyed.AddListener(_onDeadAttackObject);
     }
 
     public void OnUpdate(float deltaTime)
