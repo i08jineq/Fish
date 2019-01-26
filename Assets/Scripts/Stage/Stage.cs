@@ -10,8 +10,10 @@ public class Stage : MonoBehaviour
 
     private List<Pawn> spawnedPawn = new List<Pawn>();
 
-    public void Init()
+    private int spawnableNumber = 0;
+    public void Init(int level)
     {
+        spawnableNumber = Mathf.Min( level + 1, spawnDatas.Count);
         Singleton.instance.gameEvent.onSpawnedPawn.AddListener(OnSpawnedPawn);
         Singleton.instance.gameEvent.deadEvent.AddListener(OnPawnDeath);
     }
@@ -41,7 +43,8 @@ public class Stage : MonoBehaviour
                 pawn.controller.Init(pawn);
 
                 spawnDatas.RemoveAt(i);
-                if (spawnDatas.Count <= 0)
+                spawnableNumber--;
+                if (spawnableNumber <= 0)
                 {
                     isSpawnedAllPawn = true;
                 }

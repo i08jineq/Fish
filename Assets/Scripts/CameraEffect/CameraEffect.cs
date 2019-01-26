@@ -9,6 +9,7 @@ public class CameraEffect : MonoBehaviour
     private float _currentShakeStrength = 0;
     private float _currentPeriod = 0;
     private float _currentTimeCount = 0;
+
     public void Init()
     {
         cameraTransform = Singleton.instance.mainCamera.transform;
