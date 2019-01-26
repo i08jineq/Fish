@@ -15,7 +15,7 @@ public class AttackObjectManager
 
     public void OnUpdate(float deltaTime)
     {
-        for(int i = 0; i < _attackObjectCount; ++i)
+        for(int i = 0; i < _attackObjectCount; i++)
         {
             _spawnedAttackObjects[i].OnUpdate(deltaTime);
         }
