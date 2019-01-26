@@ -17,13 +17,15 @@ public class CameraEffect : MonoBehaviour
 
     public void ShakeCamera(float strenght, float period)
     {
-        _currentShakeStrength = strenght;
+
         _currentPeriod = period;
         _currentTimeCount = 0;
         if (isShakingCamera)
         {
+            _currentShakeStrength = Mathf.Max(_currentShakeStrength, strenght);
             return;
         }
+        _currentShakeStrength = strenght;
         StartCoroutine(ShakeCameraEnumerator());
     }
 
