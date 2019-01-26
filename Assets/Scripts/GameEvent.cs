@@ -10,6 +10,8 @@ public class GameEvent
     public EventPublisher<Pawn> onPlayerJoinedStage = new EventPublisher<Pawn>();
     public EventPublisher<Pawn> onSpawnedPawn = new EventPublisher<Pawn>();
 
+    public EventPublisher<Pawn> onPawnStateChange = new EventPublisher<Pawn>();
+
     public EventPublisher<float> shakeCamera = new EventPublisher<float>();
 
     public EventPublisher<Pawn, float> takeDamageEvent = new EventPublisher<Pawn, float>();
