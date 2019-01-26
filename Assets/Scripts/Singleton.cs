@@ -10,13 +10,16 @@ public class Singleton
     public Transform cameraRoot;
     public Camera mainCamera;
     public GameEvent gameEvent;
+    public Pawn playerPawn;
 
-    public static void Init()
+    public static IEnumerator Init()
     {
         if(instance == null)
         {
             instance = new Singleton();
         }
+        instance.gameEvent = new GameEvent();
+        yield break;
     }
 
     public Singleton()
@@ -29,7 +32,5 @@ public class Singleton
 
         cameraRoot = cameraRootObject.transform;
         mainCamera.transform.SetParent(cameraRoot);
-
-        gameEvent = new GameEvent();
     }
 }
