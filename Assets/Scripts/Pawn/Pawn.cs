@@ -38,7 +38,7 @@ public class Pawn : MonoBehaviour
         Singleton.instance.gameEvent.onSpawnedAttackObject.Invoke(attackObject);
     }
 
-    public void Move(Vector3 direction)
+    public virtual void Move(Vector3 direction)
     {
         transform.position += direction * pawnState.Speed * Time.deltaTime;
     }

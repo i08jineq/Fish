@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 3232188583261858023}
   - component: {fileID: 4765015768856338882}
   m_Layer: 10
-  m_Name: Player
+  m_Name: Nimo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -200,7 +200,7 @@ MonoBehaviour:
   _attackObject: {fileID: 1807920157604385969, guid: 8aca723599739422aa9f68ab10be9243,
     type: 3}
   pawnState:
-    Hp: 1e+12
+    Hp: 100
     Speed: 10
     Range: 1
     Damage: 0
