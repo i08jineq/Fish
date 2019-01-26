@@ -14,7 +14,6 @@ public class GameMain : MonoBehaviour
     private const int maxStageIndex = 3;
     private bool isPlaying = false;
 
-
     #region init
     private void Awake()
     {
@@ -25,7 +24,6 @@ public class GameMain : MonoBehaviour
     {
         isPlaying = false;
         yield return Singleton.Init();
-
 
         SetupPawnManager();
         SetupEvent();
@@ -54,6 +52,7 @@ public class GameMain : MonoBehaviour
         Singleton.instance.gameEvent.deadEvent.AddListener(OnPlayerDie);
         Singleton.instance.gameEvent.onStageCleared.AddListener(OnStageCleared);
     }
+
     private void SetupPawnManager()
     {
         pawnManager = new PawnManager();
