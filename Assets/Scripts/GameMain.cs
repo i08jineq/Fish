@@ -95,6 +95,7 @@ public class GameMain : MonoBehaviour
         topPanel.UpdateHPBar(Singleton.instance.playerPawn.pawnState.Hp);
         topPanel.UpdateScore(totalScore, 0);
     }
+
     #endregion
 
     private void OnPawnDie(Pawn pawn)
@@ -179,6 +180,7 @@ public class GameMain : MonoBehaviour
 
     private void OnPawnStateChanged(Pawn pawn)
     {
+        Debug.Log("here");
         if (pawn == Singleton.instance.playerPawn)
         {
             topPanel.UpdateHPBar(pawn.pawnState.Hp);

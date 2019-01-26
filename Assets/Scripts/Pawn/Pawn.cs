@@ -28,7 +28,7 @@ public class Pawn : MonoBehaviour
 
         Singleton.instance.gameEvent.takeDamageEvent.Invoke(this, damageValue);
         Singleton.instance.gameEvent.onPawnStateChange.Invoke(this);
-        if (pawnState.Hp < 0)
+        if (pawnState.Hp <= 0)
         {
             Dead();
         }
