@@ -23,7 +23,7 @@ public class AiController : IController
         }
         else
         {
-            targetPawn.Move((playerPawn.transform.position - targetPawn.transform.position).normalized * targetPawn.pawnState.Speed);
+            targetPawn.Move((playerPawn.transform.position - targetPawn.transform.position).normalized);
         }
     }
 }

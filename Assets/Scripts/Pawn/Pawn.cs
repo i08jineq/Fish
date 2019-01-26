@@ -38,9 +38,9 @@ public class Pawn : MonoBehaviour
         attackObject.Init(this);
     }
 
-    public void Move(Vector3 deltaPosition)
+    public void Move(Vector3 direction)
     {
-        transform.position += deltaPosition;
+        transform.position += direction * pawnState.Speed * Time.deltaTime;
     }
 
     public void FaceTo(Vector3 position)
