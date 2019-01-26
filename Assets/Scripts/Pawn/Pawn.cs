@@ -10,7 +10,6 @@ public class Pawn : MonoBehaviour
 
     public PawnState pawnState;
     public IController controller;
-    public Vector3 hpbarOffset = new Vector3(0, 1, -1);
 
     public void Init()
     {
@@ -44,6 +43,16 @@ public class Pawn : MonoBehaviour
     public virtual void Move(Vector3 direction)
     {
         transform.position += direction * pawnState.Speed * Time.deltaTime;
+    }
+
+    public void TurnTo(Vector3 direction, float speed)
+    {
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), speed * Time.deltaTime);
+    }
+
+    public void MoveForward(float speed)
+    {
+        transform.Translate(new Vector3(0, 0, speed * Time.deltaTime));
     }
 
     public void FaceTo(Vector3 position)

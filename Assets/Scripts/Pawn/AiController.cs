@@ -13,30 +13,47 @@ public class AiController : IController
     {
         targetPawn = pawn;
         aiDataComponent = pawn.GetComponent<AIDataComponent>();
+        aiDataComponent.Init();
         playerPawn = Singleton.instance.playerPawn;
     }
 
     public void OnUpdate(float deltaTime)
     {
-        targetPawn.FaceTo(playerPawn.transform.position);
+        TryAttack(deltaTime);
+        MovePawn();
+    }
 
-        if (Vector3.Distance(targetPawn.transform.position, playerPawn.transform.position) < targetPawn.pawnState.Range)
+    private void MovePawn()
+    {
+        Vector3 diff = playerPawn.transform.position - targetPawn.transform.position;
+        float useTurnSpeed = aiDataComponent.isCharging ? targetPawn.pawnState.ChargeTurnSpeed : targetPawn.pawnState.TurnSpeed;
+        float useMoveSpeed = aiDataComponent.isCharging ? targetPawn.pawnState.ChargeSpeed : targetPawn.pawnState.Speed;
+
+        if (diff.magnitude > targetPawn.pawnState.Range)
         {
-            TryAttack(deltaTime);
+            targetPawn.TurnTo(diff, useTurnSpeed);
         }
-        else
-        {
-            targetPawn.Move((playerPawn.transform.position - targetPawn.transform.position).normalized);
-        }
+
+        targetPawn.MoveForward(useMoveSpeed);
     }
 
     private void TryAttack(float deltaTime)
     {
+        if(aiDataComponent.isCharging )
+        {
+            aiDataComponent.chargeTimeCount += deltaTime;
+            if(aiDataComponent.chargeTimeCount > aiDataComponent.chargePeriod)
+            {
+                aiDataComponent.chargeTimeCount = 0;
+                aiDataComponent.attackCountTime = 0;
+                aiDataComponent.isCharging = false;
+            }
+            return;
+        }
         aiDataComponent.attackCountTime += deltaTime;
         if(aiDataComponent.attackCountTime > aiDataComponent.attackInterval)
         {
-            aiDataComponent.attackCountTime = 0;
-            targetPawn.SpawnAttackObject();
+            aiDataComponent.isCharging = true;
         }
     }
 }

@@ -8,12 +8,10 @@ public class PawnState
     public float Hp;
 
     public float Speed;
-
+    public float TurnSpeed = 5;
+    public float ChargeSpeed;
+    public float ChargeTurnSpeed = 5;
     public float Range;
 
     public float Damage;
-
-    [System.NonSerialized] public float attackCountTime = 0;
-
-    public float attackInterval = 0.5f;
 }

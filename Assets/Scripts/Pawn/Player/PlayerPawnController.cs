@@ -43,14 +43,13 @@ public class PlayerPawnController : IController
         if (mouseDown && previousMouseDown == false)
         {
             //攻撃
-            TryAttack(deltaTime);
+            Attack();
         }
         previousMouseDown = mouseDown;
     }
 
-    private void TryAttack(float deltaTime)
+    private void Attack()
     {
-        targetPawn.pawnState.attackCountTime += deltaTime;
         targetPawn.SpawnAttackObject();
     }
 }

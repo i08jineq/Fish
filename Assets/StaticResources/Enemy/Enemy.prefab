@@ -218,12 +218,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _attackObject: {fileID: 1807920157604385969, guid: f2048015bfd6978438af8bde7a0e3813,
     type: 3}
+  score: 1
   pawnState:
     Hp: 10
     Speed: 10
+    TurnSpeed: 3
+    ChargeSpeed: 25
+    ChargeTurnSpeed: 50
     Range: 10
     Damage: 0
-    attackInterval: 0.5
 --- !u!114 &6182086756344204331
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -236,7 +239,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96fa8bb3347c149a9b384133d10c341e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackInterval: 0.5
+  minChargePeriod: 2
+  maxChargePeriod: 3
+  minAttackInterval: 5
+  maxAttackInterval: 8
 --- !u!54 &4225781934865948844
 Rigidbody:
   m_ObjectHideFlags: 0
