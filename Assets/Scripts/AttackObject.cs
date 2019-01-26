@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class AttackObject : MonoBehaviour
 {
-    protected AttackObjectState _attackObjectState;
+    [SerializeField]
+    AttackObjectState _attackObjectState;
 
     Pawn _ownerPawn;
 
@@ -15,7 +16,7 @@ public class AttackObject : MonoBehaviour
 
     public void OnUpdate(float deltaTime)
     {
-        transform.position += Vector3.forward;
+        transform.position += Vector3.forward * deltaTime * _attackObjectState.speed;
     }
 
     protected virtual void Attack(Pawn attackedPawn)
