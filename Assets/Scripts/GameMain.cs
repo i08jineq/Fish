@@ -19,7 +19,6 @@ public class GameMain : MonoBehaviour
     IEnumerator Start()
     {
         isPlaying = false;
-
         yield return Singleton.Init();
 
         SetupPawnManager();
@@ -31,6 +30,7 @@ public class GameMain : MonoBehaviour
 
         CreateCurrentIndexStage();
         yield return null;
+
         isPlaying = true;
     }
 
