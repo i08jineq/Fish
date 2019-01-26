@@ -6,6 +6,7 @@ public class PlayerPawnController : IController
 {
 
     Pawn targetPawn;
+    private bool previousMouseDown = false;
     //向き
     float direction = 0;
 
@@ -37,21 +38,19 @@ public class PlayerPawnController : IController
             var lookPoint = ray.GetPoint(direction);
             targetPawn.FaceTo(lookPoint);
         }
-        if (Input.GetMouseButton(0))
+
+        bool mouseDown = Input.GetMouseButton(0);
+        if (mouseDown && previousMouseDown == false)
         {
             //攻撃
             TryAttack(deltaTime);
         }
-
+        previousMouseDown = mouseDown;
     }
 
     private void TryAttack(float deltaTime)
     {
         targetPawn.pawnState.attackCountTime += deltaTime;
-        if (targetPawn.pawnState.attackCountTime > targetPawn.pawnState.attackInterval)
-        {
-            targetPawn.pawnState.attackCountTime = 0;
-            targetPawn.SpawnAttackObject();
-        }
+        targetPawn.SpawnAttackObject();
     }
 }
