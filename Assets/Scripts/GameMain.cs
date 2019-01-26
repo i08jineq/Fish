@@ -74,9 +74,10 @@ public class GameMain : MonoBehaviour
 
     private void OnPlayerDie(Pawn pawn)
     {
-        if (pawn == Singleton.instance.playerPawn)
+        if (pawn == Singleton.instance.nimoPawn)
         {
             Debug.Log("Game Over");
+            isPlaying = false;
         }
     }
 
