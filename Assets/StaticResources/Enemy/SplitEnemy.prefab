@@ -178,12 +178,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4271527093169144772}
-  - component: {fileID: 959508338195026428}
+  - component: {fileID: 2534545530277165608}
   - component: {fileID: 6182086756344204331}
   - component: {fileID: 4225781934865948844}
   - component: {fileID: 3585270259531990293}
   m_Layer: 12
-  m_Name: Enemy
+  m_Name: SplitEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -204,7 +204,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &959508338195026428
+--- !u!114 &2534545530277165608
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -213,17 +213,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 5797314806317098085}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc990bba0aa6a994d9cfa60b00815181, type: 3}
+  m_Script: {fileID: 11500000, guid: 0ac9dd8ae7a47314bb10c5c588e74515, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _attackObject: {fileID: 1807920157604385969, guid: f2048015bfd6978438af8bde7a0e3813,
     type: 3}
   pawnState:
     Hp: 10
-    Speed: 10
-    Range: 10
-    Damage: 0
+    Speed: 5
+    Range: 5
+    Damage: 10
     attackInterval: 0.5
+  splitPawns:
+  - {fileID: 959508338195026428, guid: d9ca651ad43fb4527915208e69eb6077, type: 3}
+  - {fileID: 959508338195026428, guid: d9ca651ad43fb4527915208e69eb6077, type: 3}
+  - {fileID: 959508338195026428, guid: d9ca651ad43fb4527915208e69eb6077, type: 3}
 --- !u!114 &6182086756344204331
 MonoBehaviour:
   m_ObjectHideFlags: 0
