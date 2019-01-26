@@ -52,8 +52,6 @@ public class GameMain : MonoBehaviour
     private void OnStageCleared()
     {
 
-
-
     }
 
     private void Update()
