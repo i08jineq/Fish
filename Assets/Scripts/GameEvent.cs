@@ -15,5 +15,6 @@ public class GameEvent
     public EventPublisher<Pawn, float> takeDamageEvent = new EventPublisher<Pawn, float>();
     public EventPublisher<Pawn> deadEvent = new EventPublisher<Pawn>();
 
-
+    public EventPublisher<AttackObject> onSpawnedAttackObject = new EventPublisher<AttackObject>();
+    public EventPublisher<AttackObject> onDeadAttackObject = new EventPublisher<AttackObject>();
 }
