@@ -1218,6 +1218,9 @@ MonoBehaviour:
     flockNumbers: 10
     updateOffsetPeriod: 3
     flockGroupSize: 0.1
+  damageText: {fileID: 6445129697556313862, guid: 3217f09ba31754f31943f793550a6773,
+    type: 3}
+  damageTextLifeTime: 1
 --- !u!4 &465112233
 Transform:
   m_ObjectHideFlags: 0

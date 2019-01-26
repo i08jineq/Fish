@@ -17,6 +17,8 @@ public class GameMain : MonoBehaviour
     [SerializeField] private float shakeCameraStrength = 0.5f;
     [SerializeField] private float shakeCameraPeriod = 0.5f;
     [SerializeField] private FlockGroup flockGroup;
+    [SerializeField] private DamageText damageText;
+    [SerializeField] private float damageTextLifeTime = 1;
     private PawnManager pawnManager;
     private AttackObjectManager attackObjectManager;
     private Stage currentStage;
@@ -231,6 +233,11 @@ public class GameMain : MonoBehaviour
 
     private void OnPawnTakeDamage(Pawn pawn, float damage)
     {
+        DamageText dmgText= GameObject.Instantiate<DamageText>(damageText);
+        dmgText.SetText((int)damage);
+        dmgText.transform.position = pawn.transform.position;
+        GameObject.Destroy(pawn, damageTextLifeTime);
+
         if(pawn == Singleton.instance.playerPawn)
         {
             cameraEffect.ShakeCamera(shakeCameraStrength, shakeCameraPeriod);
