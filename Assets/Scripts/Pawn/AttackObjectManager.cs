@@ -10,7 +10,7 @@ public class AttackObjectManager : MonoBehaviour
     {
         foreach(var attackObject in spawnedAttackObjects)
         {
-            attackObject.
+            
         }
     }
 }
