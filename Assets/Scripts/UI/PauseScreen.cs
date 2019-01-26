@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 public class PauseScreen : MonoBehaviour
 {
-    [SerializeField]protected Button resumeButton;
+    [SerializeField] protected Button resumeButton;
     [SerializeField] protected Button quitButton;
     [SerializeField] protected Button backToTitleButton;
 

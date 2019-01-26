@@ -11,7 +11,6 @@ public class Singleton
     public Camera mainCamera;
     public GameEvent gameEvent;
     public Pawn playerPawn;
-    public Pawn nimoPawn;
 
 
     public static IEnumerator Init()

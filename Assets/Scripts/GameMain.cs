@@ -12,12 +12,14 @@ public class GameMain : MonoBehaviour
     [SerializeField] private GameOverUI gameOverUI;
     [SerializeField] private Button pauseButton;
     [SerializeField] private PauseScreen pauseScreen;
+    [SerializeField] private TopPanel topPanel;
     private PawnManager pawnManager;
     private AttackObjectManager attackObjectManager;
     private Stage currentStage;
     private int stageIndex = 0;
     private bool isPlaying = false;
-
+    private int totalScore = 0;
+    private int nextLevel = 10;
     #region init
     private void Awake()
     {
@@ -35,11 +37,12 @@ public class GameMain : MonoBehaviour
         SetupPauseScreen();
         yield return null;
         CreatePlayerPawn();
-        CreateNimoPawn();
 
         CreateCurrentIndexStage(0);
+
+        SetupTopPanel();
         yield return null;
-        
+
         yield return fadeLayer.FadeInEnumerator(2);
         isPlaying = true;
     }
@@ -49,19 +52,13 @@ public class GameMain : MonoBehaviour
         Singleton.instance.playerPawn = PawnFactory.CreatePawn(playerPawnPrefab);
         Singleton.instance.playerPawn.controller = new PlayerPawnController();
         Singleton.instance.playerPawn.controller.Init(Singleton.instance.playerPawn);
-
-    }
-
-    private void CreateNimoPawn()
-    {
-        Singleton.instance.nimoPawn = PawnFactory.CreatePawn(nimoPawnPrefab);
-        Singleton.instance.nimoPawn.controller = new EmptyController();
     }
 
     private void SetupEvent()
     {
-        Singleton.instance.gameEvent.deadEvent.AddListener(OnPlayerDie);
+        Singleton.instance.gameEvent.deadEvent.AddListener(OnPawnDie);
         Singleton.instance.gameEvent.onStageCleared.AddListener(OnStageCleared);
+        Singleton.instance.gameEvent.onPawnStateChange.AddListener(OnPawnStateChanged);
     }
 
     private void SetupPawnManager()
@@ -92,38 +89,53 @@ public class GameMain : MonoBehaviour
         pauseScreen.onClickedBackTOTitle.AddListener(OnClickedToTitle);
         pauseScreen.gameObject.SetActive(false);
     }
+
+    private void SetupTopPanel()
+    {
+        topPanel.UpdateHPBar(Singleton.instance.playerPawn.pawnState.Hp);
+        topPanel.UpdateScore(totalScore, 0);
+    }
     #endregion
 
-    private void OnPlayerDie(Pawn pawn)
+    private void OnPawnDie(Pawn pawn)
     {
-        if (pawn == Singleton.instance.nimoPawn)
+        if (pawn == Singleton.instance.playerPawn)
         {
             gameOverUI.gameObject.SetActive(true);
             isPlaying = false;
+        }
+        else
+        {
+            totalScore += pawn.score;
+            topPanel.UpdateScore(totalScore, (float)totalScore / nextLevel);
+            if (totalScore >= nextLevel)
+            {
+                Debug.Log("Level Up pause game, Choice powerup");
+            }
         }
     }
 
     private void OnStageCleared()
     {
         GameObject.Destroy(currentStage.gameObject);
-        stageIndex ++; 
+        stageIndex++;
         CreateCurrentIndexStage(stageIndex);
     }
 
     private void CreateCurrentIndexStage(int max)
     {
-        if(max > stages.Count)
+        if (max > stages.Count)
         {
             max = stages.Count;
         }
 
-        currentStage = GameObject.Instantiate<Stage>(stages[Random.Range(0,max)]);
+        currentStage = GameObject.Instantiate<Stage>(stages[Random.Range(0, max)]);
         currentStage.Init();
     }
 
     private void Update()
     {
-        if(isPlaying)
+        if (isPlaying)
         {
             float deltaTime = Time.deltaTime;
             pawnManager.OnUpdate(deltaTime);
@@ -163,5 +175,13 @@ public class GameMain : MonoBehaviour
     private void OnClickedToTitle()
     {
         StartCoroutine(GoBackHomeEnumerator());
+    }
+
+    private void OnPawnStateChanged(Pawn pawn)
+    {
+        if (pawn == Singleton.instance.playerPawn)
+        {
+            topPanel.UpdateHPBar(pawn.pawnState.Hp);
+        }
     }
 }

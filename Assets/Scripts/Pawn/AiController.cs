@@ -5,7 +5,7 @@ using UnityEngine;
 public class AiController : IController
 {
     private Pawn targetPawn;
-    private Pawn nimoPawn;
+    private Pawn playerPawn;
     private AIDataComponent aiDataComponent;
     private float attackIntervalCount = 0;
 
@@ -13,20 +13,20 @@ public class AiController : IController
     {
         targetPawn = pawn;
         aiDataComponent = pawn.GetComponent<AIDataComponent>();
-        nimoPawn = Singleton.instance.nimoPawn;
+        playerPawn = Singleton.instance.playerPawn;
     }
 
     public void OnUpdate(float deltaTime)
     {
-        targetPawn.FaceTo(nimoPawn.transform.position);
+        targetPawn.FaceTo(playerPawn.transform.position);
 
-        if (Vector3.Distance(targetPawn.transform.position, nimoPawn.transform.position) < targetPawn.pawnState.Range)
+        if (Vector3.Distance(targetPawn.transform.position, playerPawn.transform.position) < targetPawn.pawnState.Range)
         {
             TryAttack(deltaTime);
         }
         else
         {
-            targetPawn.Move((nimoPawn.transform.position - targetPawn.transform.position).normalized);
+            targetPawn.Move((playerPawn.transform.position - targetPawn.transform.position).normalized);
         }
     }
 

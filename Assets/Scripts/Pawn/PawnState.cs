@@ -5,8 +5,6 @@ using UnityEngine;
 [System.Serializable]
 public class PawnState
 {
-    public float MaxHp;
-
     public float Hp;
 
     public float Speed;

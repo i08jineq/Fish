@@ -6,6 +6,7 @@ public class Pawn : MonoBehaviour
 {
     [SerializeField]
     AttackObject _attackObject = null;
+    public int score = 1;
 
     public PawnState pawnState;
     public IController controller;
@@ -26,7 +27,7 @@ public class Pawn : MonoBehaviour
         pawnState.Hp -= damageValue;
 
         Singleton.instance.gameEvent.takeDamageEvent.Invoke(this, damageValue);
-
+        Singleton.instance.gameEvent.onPawnStateChange.Invoke(this);
         if (pawnState.Hp < 0)
         {
             Dead();
