@@ -5,13 +5,19 @@ using UnityEngine;
 public class Pawn : MonoBehaviour
 {
     [SerializeField]
-    AttackObject _attackObject;
+    AttackObject _attackObject = null;
 
     public PawnState pawnState;
+    public IController controller;
 
     public void Init()
     {
         
+    }
+
+    public virtual void OnUpdate(float deltaTime)
+    {
+        controller.OnUpdate(deltaTime);
     }
 
     public void TakeDamage(float damageValue)

@@ -12,6 +12,7 @@ public class Singleton
     public GameEvent gameEvent;
     public Pawn playerPawn;
 
+
     public static IEnumerator Init()
     {
         if(instance == null)
@@ -32,5 +33,6 @@ public class Singleton
 
         cameraRoot = cameraRootObject.transform;
         mainCamera.transform.SetParent(cameraRoot);
+       
     }
 }
