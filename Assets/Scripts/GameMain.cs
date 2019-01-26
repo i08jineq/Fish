@@ -1,13 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class GameMain : MonoBehaviour
 {
     [SerializeField] private Pawn playerPawnPrefab;
     [SerializeField] private Pawn nimoPawnPrefab;
     [SerializeField] private List<Stage> stages = new List<Stage>();
     [SerializeField] private FadeLayer fadeLayer;
+    [SerializeField] private GameOverUI gameOverUI;
     private PawnManager pawnManager;
     private AttackObjectManager attackObjectManager;
     private Stage currentStage;
@@ -27,7 +28,7 @@ public class GameMain : MonoBehaviour
         SetupPawnManager();
         SetupEvent();
         SetupAttackObjectManager();
-
+        SetupGameOverUI();
         yield return null;
         CreatePlayerPawn();
         CreateNimoPawn();
@@ -70,13 +71,19 @@ public class GameMain : MonoBehaviour
         attackObjectManager.Init();
     }
 
+    private void SetupGameOverUI()
+    {
+        gameOverUI.gameObject.SetActive(false);
+        gameOverUI.onClicked.AddListener(OnClickedGameOver);
+
+    }
     #endregion
 
     private void OnPlayerDie(Pawn pawn)
     {
         if (pawn == Singleton.instance.nimoPawn)
         {
-
+            gameOverUI.gameObject.SetActive(true);
             isPlaying = false;
         }
     }
@@ -108,5 +115,16 @@ public class GameMain : MonoBehaviour
             currentStage.OnUpdate(deltaTime);
             attackObjectManager.OnUpdate(deltaTime);
         }
+    }
+
+    private void OnClickedGameOver()
+    {
+        StartCoroutine(GoBackHomeEnumerator());
+    }
+
+    private IEnumerator GoBackHomeEnumerator()
+    {
+        yield return fadeLayer.FadeOutEnumerator(Color.black, 2);
+        SceneManager.LoadScene("Title");
     }
 }
