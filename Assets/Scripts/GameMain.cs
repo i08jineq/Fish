@@ -87,6 +87,7 @@ public class GameMain : MonoBehaviour
             return;
         }
         CreateCurrentIndexStage();
+
     }
 
     private void CreateCurrentIndexStage()
