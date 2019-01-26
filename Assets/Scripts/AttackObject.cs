@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class AttackObject : MonoBehaviour
 {
-    [SerializeField]
-    AttackObjectData _attackObjectState;
-
+    [SerializeField] AttackObjectData _attackObjectState;
+    [SerializeField] GameObject _hitParticleEffect;
+    [SerializeField] float hitEffectLifeTime = 1;
     Pawn _ownerPawn;
 
     public void Init(Pawn ownerPawn)
@@ -41,6 +41,9 @@ public class AttackObject : MonoBehaviour
         {
             Attack(pawn);
 
+            GameObject hit = GameObject.Instantiate<GameObject>(_hitParticleEffect);
+            hit.transform.position = transform.position;
+            GameObject.Destroy(hit, hitEffectLifeTime);
             Singleton.instance.gameEvent.onAttackObjectDestroyed.Invoke(this);
             Destroy(gameObject);
         }

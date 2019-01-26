@@ -65,6 +65,9 @@ MonoBehaviour:
     damage: 10
     speed: 10
     destroyTime: 3
+  _hitParticleEffect: {fileID: 2514186680595665754, guid: 91ac89cc109114637b725aae47524bc4,
+    type: 3}
+  hitEffectLifeTime: 1
 --- !u!65 &8893867108257806277
 BoxCollider:
   m_ObjectHideFlags: 0
