@@ -235,5 +235,9 @@ public class GameMain : MonoBehaviour
         {
             cameraEffect.ShakeCamera(shakeCameraStrength, shakeCameraPeriod);
         }
+        else
+        {
+            cameraEffect.ShakeCamera(shakeCameraStrength/2, shakeCameraPeriod/2);
+        }
     }
 }

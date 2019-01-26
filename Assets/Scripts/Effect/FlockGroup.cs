@@ -13,6 +13,7 @@ public class FlockGroup
     [System.NonSerialized] public Vector3 flockCenterOffset;
     private Vector3 flockGoal = Vector3.zero;
     private float updateOffsetTimeCount = 0;
+    private int flockValidNumber = 0;
 
     private List<Flock> flocks = new List<Flock>();
 
@@ -29,6 +30,17 @@ public class FlockGroup
             flock.Init();
             flock.transform.position = pos;
             flocks.Add(flock);
+        }
+        flockValidNumber = flockNumbers;
+    }
+
+    public void SetFlockValidNumber(float percentage)
+    {
+        float number = percentage * (float)flockNumbers;
+        flockValidNumber = (int)number;
+        for (int i = 0; i < flockNumbers; i++)
+        {
+            flocks[i].gameObject.SetActive(i <= flockValidNumber);
         }
     }
 
@@ -49,7 +61,7 @@ public class FlockGroup
         }
         Vector3 pos = Vector3.zero;
         Vector3 diff = Vector3.zero;
-        for (int i = 0; i < flockNumbers; i++)
+        for (int i = 0; i < flockValidNumber; i++)
         {
             pos = flocks[i].transform.position;
             diff = (flockGoal - pos);
