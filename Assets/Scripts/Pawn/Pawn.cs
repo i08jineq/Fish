@@ -11,7 +11,9 @@ public class Pawn : MonoBehaviour
     public PawnState pawnState;
     public IController controller;
     public Vector3 hpbarOffset = new Vector3(0, 1, -1);
-
+    private const float positionMinZ = -7;
+    private const float positionMaxZ = 10;
+    private const float positionXRange = 20;
     public void Init()
     {
 
@@ -43,7 +45,10 @@ public class Pawn : MonoBehaviour
 
     public virtual void Move(Vector3 direction)
     {
-        transform.position += direction * pawnState.Speed * Time.deltaTime;
+        Vector3 pos = transform.position + direction * pawnState.Speed * Time.deltaTime;
+        pos.z = Mathf.Clamp(pos.z, positionMinZ, positionMaxZ);
+        pos.x = Mathf.Clamp(pos.x, -positionXRange, positionXRange);
+        transform.position = pos;
     }
 
     public void FaceTo(Vector3 position)
