@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class AiController : IController
 {
-    Pawn targetPawn;
-    Pawn playerPawn;
+    private Pawn targetPawn;
+    private Pawn playerPawn;
+    private AIDataComponent aiDataComponent;
+    private float attackIntervalCount = 0;
 
     public void Init(Pawn pawn)
     {
         targetPawn = pawn;
+        aiDataComponent = pawn.GetComponent<AIDataComponent>();
         playerPawn = Singleton.instance.playerPawn;
     }
 
@@ -19,11 +22,21 @@ public class AiController : IController
 
         if (Vector3.Distance(targetPawn.transform.position, playerPawn.transform.position) < 10f)
         {
-            targetPawn.SpawnAttackObject();
+            TryAttack(deltaTime);
         }
         else
         {
             targetPawn.Move((playerPawn.transform.position - targetPawn.transform.position).normalized);
+        }
+    }
+
+    private void TryAttack(float deltaTime)
+    {
+        aiDataComponent.attackCountTime += deltaTime;
+        if(aiDataComponent.attackCountTime > aiDataComponent.attackInterval)
+        {
+            aiDataComponent.attackCountTime = 0;
+            targetPawn.SpawnAttackObject();
         }
     }
 }

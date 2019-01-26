@@ -7,6 +7,7 @@ public class GameMain : MonoBehaviour
     [SerializeField] private Pawn playerPawnPrefab;
     [SerializeField] private List<Stage> stages = new List<Stage>();
     private PawnManager pawnManager;
+    private AttackObjectManager attackObjectManager;
     private Stage currentStage;
     private int stageIndex = 0;
 
@@ -21,10 +22,14 @@ public class GameMain : MonoBehaviour
         yield return Singleton.Init();
 
         SetupPawnManager();
-
         SetupEvent();
+        SetupAttackObjectManager();
+
         yield return null;
         CreatePlayerPawn();
+
+        CreateCurrentIndexStage();
+        yield return null;
         isPlaying = true;
     }
 
@@ -46,6 +51,12 @@ public class GameMain : MonoBehaviour
         pawnManager = new PawnManager();
     }
 
+    private void SetupAttackObjectManager()
+    {
+        attackObjectManager = new AttackObjectManager();
+        attackObjectManager.Init();
+    }
+
     #endregion
 
     private void OnPlayerDie(Pawn pawn)
@@ -61,12 +72,19 @@ public class GameMain : MonoBehaviour
 
     }
 
+    private void CreateCurrentIndexStage()
+    {
+        currentStage = GameObject.Instantiate<Stage>(stages[stageIndex]);
+        currentStage.Init();
+    }
+
     private void Update()
     {
         if(isPlaying)
         {
             float deltaTime = Time.deltaTime;
             pawnManager.OnUpdate(deltaTime);
+            currentStage.OnUpdate(deltaTime);
         }
 
     }
