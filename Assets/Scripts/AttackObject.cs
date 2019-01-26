@@ -12,6 +12,11 @@ public class AttackObject : MonoBehaviour
         _ownerPawn = ownerPawn;
     }
 
+    public void OnUpdate(float deltaTime)
+    {
+
+    }
+
     protected virtual void Attack(Pawn attackedPawn)
     {
         attackedPawn.TakeDamage(_damage);
