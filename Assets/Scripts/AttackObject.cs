@@ -40,6 +40,9 @@ public class AttackObject : MonoBehaviour
         if(pawn != null && pawn != _ownerPawn)
         {
             Attack(pawn);
+
+            Singleton.instance.gameEvent.onAttackObjectDestroyed.Invoke(this);
+            Destroy(gameObject);
         }
     }
 }

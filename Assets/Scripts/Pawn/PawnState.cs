@@ -10,4 +10,8 @@ public class PawnState
     public float Speed;
 
     public float Range;
+
+    [System.NonSerialized] public float attackCountTime = 0;
+
+    public float attackInterval = 0.5f;
 }

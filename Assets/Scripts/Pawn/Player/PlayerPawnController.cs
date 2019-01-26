@@ -40,8 +40,18 @@ public class PlayerPawnController : IController
         if (Input.GetMouseButton(0))
         {
             //攻撃
-            targetPawn.SpawnAttackObject();
+            TryAttack(deltaTime);
         }
 
+    }
+
+    private void TryAttack(float deltaTime)
+    {
+        targetPawn.pawnState.attackCountTime += deltaTime;
+        if (targetPawn.pawnState.attackCountTime > targetPawn.pawnState.attackInterval)
+        {
+            targetPawn.pawnState.attackCountTime = 0;
+            targetPawn.SpawnAttackObject();
+        }
     }
 }
