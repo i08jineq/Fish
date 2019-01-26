@@ -13,6 +13,7 @@ public class GameMain : MonoBehaviour
 
     private bool isPlaying = false;
 
+
     #region init
 
     IEnumerator Start()
@@ -30,6 +31,8 @@ public class GameMain : MonoBehaviour
 
         CreateCurrentIndexStage();
         yield return null;
+        
+        yield return FadeManager.Instance.FadeIn(2);
         isPlaying = true;
     }
 
