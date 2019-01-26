@@ -13,6 +13,9 @@ public class GameMain : MonoBehaviour
     [SerializeField] private Button pauseButton;
     [SerializeField] private PauseScreen pauseScreen;
     [SerializeField] private TopPanel topPanel;
+    [SerializeField] private CameraEffect cameraEffect;
+    [SerializeField] private float shakeCameraStrength = 0.5f;
+    [SerializeField] private float shakeCameraPeriod = 0.5f;
     private PawnManager pawnManager;
     private AttackObjectManager attackObjectManager;
     private Stage currentStage;
@@ -39,6 +42,7 @@ public class GameMain : MonoBehaviour
         SetupAttackObjectManager();
         SetupGameOverUI();
         SetupPauseScreen();
+        SetupCameraEffect();
         yield return null;
         CreatePlayerPawn();
 
@@ -63,6 +67,7 @@ public class GameMain : MonoBehaviour
         Singleton.instance.gameEvent.deadEvent.AddListener(OnPawnDie);
         Singleton.instance.gameEvent.onStageCleared.AddListener(OnStageCleared);
         Singleton.instance.gameEvent.onPawnStateChange.AddListener(OnPawnStateChanged);
+        Singleton.instance.gameEvent.takeDamageEvent.AddListener(OnPawnTakeDamage);
     }
 
     private void SetupPawnManager()
@@ -92,6 +97,11 @@ public class GameMain : MonoBehaviour
         pauseScreen.onClickedResume.AddListener(OnClickedResume);
         pauseScreen.onClickedBackTOTitle.AddListener(OnClickedToTitle);
         pauseScreen.gameObject.SetActive(false);
+    }
+
+    private void SetupCameraEffect()
+    {
+        cameraEffect.Init();
     }
 
     private void SetupTopPanel()
@@ -185,7 +195,6 @@ public class GameMain : MonoBehaviour
 
     private void OnPawnStateChanged(Pawn pawn)
     {
-        Debug.Log("here");
         if (pawn == Singleton.instance.playerPawn)
         {
             topPanel.UpdateHPBar(pawn.pawnState.Hp);
@@ -198,5 +207,13 @@ public class GameMain : MonoBehaviour
         pos.z = Mathf.Clamp(pos.z, positionMinZ, positionMaxZ);
         pos.x = Mathf.Clamp(pos.x, -positionXRange, positionXRange);
         Singleton.instance.playerPawn.transform.position = pos;
+    }
+
+    private void OnPawnTakeDamage(Pawn pawn, float damage)
+    {
+        if(pawn == Singleton.instance.playerPawn)
+        {
+            cameraEffect.ShakeCamera(shakeCameraStrength, shakeCameraPeriod);
+        }
     }
 }

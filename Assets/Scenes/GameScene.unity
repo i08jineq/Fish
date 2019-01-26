@@ -1050,6 +1050,9 @@ MonoBehaviour:
   pauseButton: {fileID: 264494921}
   pauseScreen: {fileID: 1338482359}
   topPanel: {fileID: 1074781786}
+  cameraEffect: {fileID: 1230976545}
+  shakeCameraStrength: 0.5
+  shakeCameraPeriod: 0.5
 --- !u!4 &465112233
 Transform:
   m_ObjectHideFlags: 0
@@ -1321,9 +1324,9 @@ RectTransform:
   m_Children:
   - {fileID: 1019392299}
   - {fileID: 264494920}
-  - {fileID: 1820679658}
-  - {fileID: 1338482358}
   - {fileID: 1074781783}
+  - {fileID: 1338482358}
+  - {fileID: 1820679658}
   m_Father: {fileID: 465112233}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2532,7 +2535,7 @@ RectTransform:
   - {fileID: 2034204088}
   - {fileID: 1954195206}
   m_Father: {fileID: 723340607}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -2834,6 +2837,7 @@ GameObject:
   - component: {fileID: 1230976544}
   - component: {fileID: 1230976543}
   - component: {fileID: 1230976542}
+  - component: {fileID: 1230976545}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -2905,6 +2909,18 @@ Transform:
   m_Father: {fileID: 465112233}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 58.474003, y: 0, z: 0}
+--- !u!114 &1230976545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1230976541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a374009043ccd4214a22a5845a1e4ba5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1292995212
 GameObject:
   m_ObjectHideFlags: 0
@@ -4107,7 +4123,7 @@ RectTransform:
   - {fileID: 1292995213}
   - {fileID: 1925937357}
   m_Father: {fileID: 723340607}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
