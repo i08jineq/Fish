@@ -1053,6 +1053,13 @@ MonoBehaviour:
   cameraEffect: {fileID: 1230976545}
   shakeCameraStrength: 0.5
   shakeCameraPeriod: 0.5
+  flockGroup:
+    flockPrefab: {fileID: 2241855384586193882, guid: 702175aa40b05405a8e8da2e4a01b3f4,
+      type: 3}
+    offestRange: 0.05
+    flockNumbers: 10
+    updateOffsetPeriod: 3
+    flockGroupSize: 0.1
 --- !u!4 &465112233
 Transform:
   m_ObjectHideFlags: 0

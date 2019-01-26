@@ -16,6 +16,7 @@ public class GameMain : MonoBehaviour
     [SerializeField] private CameraEffect cameraEffect;
     [SerializeField] private float shakeCameraStrength = 0.5f;
     [SerializeField] private float shakeCameraPeriod = 0.5f;
+    [SerializeField] private FlockGroup flockGroup;
     private PawnManager pawnManager;
     private AttackObjectManager attackObjectManager;
     private Stage currentStage;
@@ -49,6 +50,9 @@ public class GameMain : MonoBehaviour
         CreateCurrentIndexStage(0);
 
         SetupTopPanel();
+
+        yield return null;
+        SetupFlockGroup();
         yield return null;
 
         yield return fadeLayer.FadeInEnumerator(2);
@@ -118,6 +122,11 @@ public class GameMain : MonoBehaviour
         pauseButton.gameObject.SetActive(true);
     }
 
+    private void SetupFlockGroup()
+    {
+        flockGroup.Init(Singleton.instance.playerPawn.transform.position);
+    }
+
     #endregion
 
     private void OnPawnDie(Pawn pawn)
@@ -165,6 +174,9 @@ public class GameMain : MonoBehaviour
             currentStage.OnUpdate(deltaTime);
             attackObjectManager.OnUpdate(deltaTime);
             ClampPlayerPosition();
+
+            flockGroup.UpdatePosition(Singleton.instance.playerPawn.transform.position);
+            flockGroup.OnUpdate(deltaTime);
         }
     }
 
