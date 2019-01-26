@@ -9,6 +9,8 @@ public class Singleton
 
     public Transform cameraRoot;
     public Camera mainCamera;
+    public GameEvent gameEvent;
+
     public static void Init()
     {
         if(instance == null)
@@ -27,5 +29,7 @@ public class Singleton
 
         cameraRoot = cameraRootObject.transform;
         mainCamera.transform.SetParent(cameraRoot);
+
+        gameEvent = new GameEvent();
     }
 }
