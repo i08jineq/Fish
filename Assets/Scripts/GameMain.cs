@@ -6,7 +6,7 @@ public class GameMain : MonoBehaviour
 {
     [SerializeField] private Pawn playerPawnPrefab;
     [SerializeField] private List<Stage> stages = new List<Stage>();
-    private PawnManager pawnManager = new PawnManager();
+    private PawnManager pawnManager;
     private Stage currentStage;
     private int stageIndex = 0;
 
@@ -16,20 +16,23 @@ public class GameMain : MonoBehaviour
 
     IEnumerator Start()
     {
-        Singleton.Init();
+        isPlaying = false;
 
-        CreatePlayerPawn();
+        yield return Singleton.Init();
+
+        SetupPawnManager();
+
         SetupEvent();
         yield return null;
-
+        CreatePlayerPawn();
         isPlaying = true;
     }
 
     private void CreatePlayerPawn()
     {
-        Singleton.instance.playerPawn = GameObject.Instantiate<Pawn>(playerPawnPrefab);
-        Singleton.instance.playerPawn.Init();
+        Singleton.instance.playerPawn = PawnFactory.CreatePawn(playerPawnPrefab);
         Singleton.instance.playerPawn.controller = new PlayerPawnController();
+        Singleton.instance.playerPawn.controller.Init(Singleton.instance.playerPawn);
 
     }
 
@@ -37,6 +40,10 @@ public class GameMain : MonoBehaviour
     {
         Singleton.instance.gameEvent.deadEvent.AddListener(OnPlayerDie);
         Singleton.instance.gameEvent.onStageCleared.AddListener(OnStageCleared);
+    }
+    private void SetupPawnManager()
+    {
+        pawnManager = new PawnManager();
     }
 
     #endregion
@@ -56,7 +63,11 @@ public class GameMain : MonoBehaviour
 
     private void Update()
     {
-        float deltaTime = Time.deltaTime;
-        pawnManager.OnUpdate(deltaTime);
+        if(isPlaying)
+        {
+            float deltaTime = Time.deltaTime;
+            pawnManager.OnUpdate(deltaTime);
+        }
+
     }
 }

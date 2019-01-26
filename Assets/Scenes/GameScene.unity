@@ -141,6 +141,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 609edce8f28c54a66b610695a3a00f36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerPawnPrefab: {fileID: 3232188583261858023, guid: 71409d33efe69496c970ddfcdbf9afe0,
+    type: 3}
+  stages: []
 --- !u!4 &465112233
 Transform:
   m_ObjectHideFlags: 0
