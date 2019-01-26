@@ -52,7 +52,7 @@ MonoBehaviour:
     type: 3}
   score: 1
   pawnState:
-    Hp: 10
+    Hp: 30
     Speed: 10
     TurnSpeed: 3
     ChargeSpeed: 25
@@ -60,6 +60,10 @@ MonoBehaviour:
     Range: 10
     Damage: 0
   localAttackObject: {fileID: 1807920156842681991}
+  meshRenderer: {fileID: 7800338557460779729}
+  resetEmmitionValue: 1
+  emmitionValue: 2
+  takeDamageEmmitPeriod: 0.5
 --- !u!114 &6182086756344204331
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -273,6 +277,12 @@ PrefabInstance:
 --- !u!4 &7800338557472375757 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400060, guid: 63296dcf03e985048a17192bb5002e26,
+    type: 3}
+  m_PrefabInstance: {fileID: 7800338557472250225}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &7800338557460779729 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 13700000, guid: 63296dcf03e985048a17192bb5002e26,
     type: 3}
   m_PrefabInstance: {fileID: 7800338557472250225}
   m_PrefabAsset: {fileID: 0}

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3232188583261858022}
   - component: {fileID: 3232188583261858023}
   - component: {fileID: 4765015768856338882}
+  - component: {fileID: 3956739515150399742}
   m_Layer: 10
   m_Name: Player
   m_TagString: Untagged
@@ -65,10 +66,11 @@ MonoBehaviour:
   pawnState:
     Hp: 10
     Speed: 10
+    TurnSpeed: 5
+    ChargeSpeed: 0
+    ChargeTurnSpeed: 5
     Range: 1
     Damage: 0
-    attackInterval: 0.5
-  hpbarOffset: {x: 0, y: 1, z: -1}
 --- !u!54 &4765015768856338882
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -85,6 +87,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &3956739515150399742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3232188583261858020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79bfae7813a7c8f41a3a6a08e494a452, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3210966796895679280
 PrefabInstance:
   m_ObjectHideFlags: 0

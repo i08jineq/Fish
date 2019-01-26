@@ -21,7 +21,7 @@ public class Pawn : MonoBehaviour
         controller.OnUpdate(deltaTime);
     }
 
-    public void TakeDamage(float damageValue)
+    public virtual void TakeDamage(float damageValue)
     {
         pawnState.Hp -= damageValue;
 

@@ -2,8 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PowerUp : MonoBehaviour
+
+public class PowerUp : ScriptableObject
 {
+    public Sprite icon;
+    public string powerupName = "power up";
+    public string description = "give you the power";
     public virtual void OnAddedToPawn(Pawn pawn)
     {
 

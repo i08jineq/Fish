@@ -232,7 +232,7 @@ public class GameMain : MonoBehaviour
         DamageText dmgText= GameObject.Instantiate<DamageText>(damageText);
         dmgText.SetText((int)damage);
         dmgText.transform.position = pawn.transform.position;
-        GameObject.Destroy(pawn, damageTextLifeTime);
+        GameObject.Destroy(dmgText.gameObject, damageTextLifeTime);
 
         if(pawn == Singleton.instance.playerPawn)
         {
