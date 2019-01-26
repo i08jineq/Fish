@@ -68,7 +68,6 @@ MonoBehaviour:
     Range: 1
     Damage: 0
     attackInterval: 0.5
-  barController: {fileID: 0}
 --- !u!54 &4765015768856338882
 Rigidbody:
   m_ObjectHideFlags: 0

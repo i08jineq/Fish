@@ -9,12 +9,11 @@ public class Pawn : MonoBehaviour
 
     public PawnState pawnState;
     public IController controller;
-
-    public HpBarController barController; 
+    public Vector3 hpbarOffset = new Vector3(0, 1, -1);
 
     public void Init()
     {
-        //barController.UpdateHPBar(pawnState.Hp, pawnState.MaxHp);
+
     }
 
     public virtual void OnUpdate(float deltaTime)
@@ -25,7 +24,7 @@ public class Pawn : MonoBehaviour
     public void TakeDamage(float damageValue)
     {
         pawnState.Hp -= damageValue;
-        //barController.UpdateHPBar(pawnState.Hp, pawnState.MaxHp);
+
         Singleton.instance.gameEvent.takeDamageEvent.Invoke(this, damageValue);
 
         if (pawnState.Hp < 0)
