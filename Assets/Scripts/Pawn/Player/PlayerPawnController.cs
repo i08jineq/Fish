@@ -51,10 +51,6 @@ public class PlayerPawnController : IController
     private void TryAttack(float deltaTime)
     {
         targetPawn.pawnState.attackCountTime += deltaTime;
-        //if (targetPawn.pawnState.attackCountTime > targetPawn.pawnState.attackInterval)
-        //{
-            //targetPawn.pawnState.attackCountTime = 0;
-            targetPawn.SpawnAttackObject();
-        //}
+        targetPawn.SpawnAttackObject();
     }
 }
