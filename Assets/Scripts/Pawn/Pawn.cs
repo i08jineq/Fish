@@ -34,7 +34,7 @@ public class Pawn : MonoBehaviour
 
     public void SpawnAttackObject()
     {
-        var attackObject = Instantiate(_attackObject, transform);
+        var attackObject = Instantiate(_attackObject, transform.position, Quaternion.identity);
         attackObject.Init(this);
     }
 
