@@ -37,9 +37,10 @@ public class PlayerPawnController : IController
             var lookPoint = ray.GetPoint(direction);
             targetPawn.FaceTo(lookPoint);
         }
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
             //攻撃
+            targetPawn.SpawnAttackObject();
         }
 
     }
