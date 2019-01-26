@@ -4,19 +4,49 @@ using UnityEngine;
 
 public class GameMain : MonoBehaviour
 {
+    [SerializeField] private Pawn playerPawnPrefab;
+    [SerializeField] private List<Stage> stages = new List<Stage>();
+    private Stage currentStage;
+    private int stageIndex = 0;
 
-    // Start is called before the first frame update
+    private bool isPlaying = false;
+
+    #region init
+
     IEnumerator Start()
     {
         Singleton.Init();
 
-        yield return new WaitForSeconds(1);
+        CreatePlayerPawn();
+        SetupEvent();
+        yield return null;
 
-        Singleton.instance.gameEvent.gameOver.Invoke();
+        isPlaying = true;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void CreatePlayerPawn()
+    {
+        Singleton.instance.playerPawn = GameObject.Instantiate<Pawn>(playerPawnPrefab);
+        Singleton.instance.playerPawn.Init();
+    }
+
+    private void SetupEvent()
+    {
+        Singleton.instance.gameEvent.deadEvent.AddListener(OnPlayerDie);
+        Singleton.instance.gameEvent.onStageCleared.AddListener(OnStageCleared);
+    }
+
+    #endregion
+
+    private void OnPlayerDie(Pawn pawn)
+    {
+        if (pawn == Singleton.instance.playerPawn)
+        {
+            Debug.Log("Game Over");
+        }
+    }
+
+    private void OnStageCleared()
     {
         
     }
