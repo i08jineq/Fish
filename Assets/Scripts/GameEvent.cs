@@ -7,4 +7,7 @@ public class GameEvent
     public EventPublisher gamePaused = new EventPublisher();
 
     public EventPublisher<float> shakeCamera = new EventPublisher<float>();
+
+    public EventPublisher<Pawn, float> takeDamageEvent = new EventPublisher<Pawn, float>();
+    public EventPublisher<Pawn> deadEvent = new EventPublisher<Pawn>();
 }
