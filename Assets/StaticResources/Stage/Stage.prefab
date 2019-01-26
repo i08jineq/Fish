@@ -44,6 +44,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnDatas:
-  - Pawn: {fileID: 2534545530277165608, guid: 3ee96474eea2bdd4caf5111b8ab8ad9c, type: 3}
+  - Pawn: {fileID: 959508338195026428, guid: d9ca651ad43fb4527915208e69eb6077, type: 3}
     spawnPosition: {x: 10, y: 0, z: 0}
+    spawnTime: 1
+  - Pawn: {fileID: 959508338195026428, guid: d9ca651ad43fb4527915208e69eb6077, type: 3}
+    spawnPosition: {x: 10, y: 0, z: 10}
     spawnTime: 1
