@@ -53,6 +53,7 @@ public class GameMain : MonoBehaviour
 
         yield return fadeLayer.FadeInEnumerator(2);
         isPlaying = true;
+        OnStartGame();
     }
 
     private void CreatePlayerPawn()
@@ -91,12 +92,14 @@ public class GameMain : MonoBehaviour
     private void SetupPauseScreen()
     {
         pauseButton.onClick.AddListener(OnClickedPauseButton);
+        pauseButton.gameObject.SetActive(false);
 
         pauseScreen.Init();
         pauseScreen.onClickedQuit.AddListener(OnClickedQuit);
         pauseScreen.onClickedResume.AddListener(OnClickedResume);
         pauseScreen.onClickedBackTOTitle.AddListener(OnClickedToTitle);
         pauseScreen.gameObject.SetActive(false);
+
     }
 
     private void SetupCameraEffect()
@@ -108,6 +111,11 @@ public class GameMain : MonoBehaviour
     {
         topPanel.UpdateHPBar(Singleton.instance.playerPawn.pawnState.Hp);
         topPanel.UpdateScore(totalScore, 0);
+    }
+
+    private void OnStartGame()
+    {
+        pauseButton.gameObject.SetActive(true);
     }
 
     #endregion
