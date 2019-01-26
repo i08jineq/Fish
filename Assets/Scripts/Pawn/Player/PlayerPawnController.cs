@@ -37,10 +37,21 @@ public class PlayerPawnController : IController
             var lookPoint = ray.GetPoint(direction);
             targetPawn.FaceTo(lookPoint);
         }
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
             //攻撃
+            TryAttack(deltaTime);
         }
 
+    }
+
+    private void TryAttack(float deltaTime)
+    {
+        targetPawn.pawnState.attackCountTime += deltaTime;
+        if (targetPawn.pawnState.attackCountTime > targetPawn.pawnState.attackInterval)
+        {
+            targetPawn.pawnState.attackCountTime = 0;
+            targetPawn.SpawnAttackObject();
+        }
     }
 }

@@ -6,7 +6,7 @@ public class GameMain : MonoBehaviour
 {
     [SerializeField] private Pawn playerPawnPrefab;
     [SerializeField] private List<Stage> stages = new List<Stage>();
-
+    [SerializeField] private FadeLayer fadeLayer;
     private PawnManager pawnManager;
     private AttackObjectManager attackObjectManager;
     private Stage currentStage;
@@ -14,12 +14,18 @@ public class GameMain : MonoBehaviour
     private const int maxStageIndex = 3;
     private bool isPlaying = false;
 
+
     #region init
+    private void Awake()
+    {
+        fadeLayer.ForceColor(Color.black);
+    }
 
     IEnumerator Start()
     {
         isPlaying = false;
         yield return Singleton.Init();
+
 
         SetupPawnManager();
         SetupEvent();
@@ -30,7 +36,8 @@ public class GameMain : MonoBehaviour
 
         CreateCurrentIndexStage();
         yield return null;
-
+        
+        yield return fadeLayer.FadeInEnumerator(2);
         isPlaying = true;
     }
 
@@ -64,8 +71,7 @@ public class GameMain : MonoBehaviour
     {
         if (pawn == Singleton.instance.playerPawn)
         {
-            isPlaying = false;
-            Debug.Log("gameover");
+            Debug.Log("Game Over");
         }
     }
 
@@ -98,6 +104,5 @@ public class GameMain : MonoBehaviour
             currentStage.OnUpdate(deltaTime);
             attackObjectManager.OnUpdate(deltaTime);
         }
-
     }
 }

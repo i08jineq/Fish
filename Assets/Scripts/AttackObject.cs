@@ -5,18 +5,27 @@ using UnityEngine;
 public class AttackObject : MonoBehaviour
 {
     [SerializeField]
-    AttackObjectState _attackObjectState;
+    AttackObjectData _attackObjectState;
 
     Pawn _ownerPawn;
 
     public void Init(Pawn ownerPawn)
     {
         _ownerPawn = ownerPawn;
+        transform.forward = ownerPawn.transform.forward;
+        _attackObjectState.startPosition = ownerPawn.transform.position;
+        _attackObjectState.startForward = ownerPawn.transform.forward;
     }
 
     public void OnUpdate(float deltaTime)
     {
-        transform.position += Vector3.forward * deltaTime * _attackObjectState.speed;
+        _attackObjectState.lifeTime += deltaTime;
+        if(_attackObjectState.lifeTime >= _attackObjectState.destroyTime)
+        {
+            Singleton.instance.gameEvent.onAttackObjectDestroyed.Invoke(this);
+            Destroy(gameObject);
+        }
+        transform.position += transform.forward * deltaTime * _attackObjectState.speed;
     }
 
     protected virtual void Attack(Pawn attackedPawn)
@@ -31,6 +40,9 @@ public class AttackObject : MonoBehaviour
         if(pawn != null && pawn != _ownerPawn)
         {
             Attack(pawn);
+
+            Singleton.instance.gameEvent.onAttackObjectDestroyed.Invoke(this);
+            Destroy(gameObject);
         }
     }
 }

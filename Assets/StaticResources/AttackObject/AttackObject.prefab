@@ -122,5 +122,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _attackObjectState:
-    damage: 0
+    damage: 10
     speed: 10
+    destroyTime: 3
