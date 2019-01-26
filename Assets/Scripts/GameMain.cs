@@ -10,7 +10,7 @@ public class GameMain : MonoBehaviour
     private AttackObjectManager attackObjectManager;
     private Stage currentStage;
     private int stageIndex = 0;
-
+    private const int maxStageIndex = 3;
     private bool isPlaying = false;
 
     #region init
@@ -63,14 +63,23 @@ public class GameMain : MonoBehaviour
     {
         if (pawn == Singleton.instance.playerPawn)
         {
-            Debug.Log("Game Over");
+            isPlaying = false;
+            Debug.Log("gameover");
         }
     }
 
     private void OnStageCleared()
     {
         isPlaying = false;
-        //GameObject.Instantiate<>
+
+        GameObject.Destroy(currentStage.gameObject);
+        stageIndex ++; 
+        if(stageIndex > maxStageIndex)
+        {
+
+            return;
+        }
+        CreateCurrentIndexStage();
     }
 
     private void CreateCurrentIndexStage()
