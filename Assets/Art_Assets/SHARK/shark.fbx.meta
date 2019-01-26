@@ -3,31 +3,96 @@ guid: 63296dcf03e985048a17192bb5002e26
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: body
-    100002: Camera
-    100004: Lamp
-    100006: //RootNode
-    100008: teeth_b
-    100010: teeth_t
-    400000: body
-    400002: Camera
-    400004: Lamp
-    400006: //RootNode
-    400008: teeth_b
-    400010: teeth_t
-    2000000: Camera
-    2100000: No Name
-    2100002: Material
-    2300000: body
-    2300002: teeth_b
-    2300004: teeth_t
-    3300000: body
-    3300002: teeth_b
-    3300004: teeth_t
-    4300000: teeth_t
-    4300002: teeth_b
-    4300004: body
-    10800000: Lamp
+    100000: base
+    100002: body
+    100004: eye_bottom.001.L
+    100006: eye_bottom.001.L_end
+    100008: eye_bottom.001.R
+    100010: eye_bottom.001.R_end
+    100012: eye_bottom.L
+    100014: eye_bottom.R
+    100016: eye_brow.001.L
+    100018: eye_brow.001.L_end
+    100020: eye_brow.001.R
+    100022: eye_brow.001.R_end
+    100024: eye_brow.L
+    100026: eye_brow.R
+    100028: fin_back.L
+    100030: fin_back.L_end
+    100032: fin_back.R
+    100034: fin_back.R_end
+    100036: fin_front.001.L
+    100038: fin_front.001.L_end
+    100040: fin_front.001.R
+    100042: fin_front.001.R_end
+    100044: fin_front.L
+    100046: fin_front.R
+    100048: fin_top
+    100050: fin_top_end
+    100052: mouth_bottom
+    100054: mouth_bottom_end
+    100056: mouth_top
+    100058: mouth_top_end
+    100060: //RootNode
+    100062: shark
+    100064: tail
+    100066: tail.001
+    100068: tail.002
+    100070: tail.004
+    100072: tail.005
+    100074: tail.006
+    100076: teeth_b
+    100078: teeth_t
+    400000: base
+    400002: body
+    400004: eye_bottom.001.L
+    400006: eye_bottom.001.L_end
+    400008: eye_bottom.001.R
+    400010: eye_bottom.001.R_end
+    400012: eye_bottom.L
+    400014: eye_bottom.R
+    400016: eye_brow.001.L
+    400018: eye_brow.001.L_end
+    400020: eye_brow.001.R
+    400022: eye_brow.001.R_end
+    400024: eye_brow.L
+    400026: eye_brow.R
+    400028: fin_back.L
+    400030: fin_back.L_end
+    400032: fin_back.R
+    400034: fin_back.R_end
+    400036: fin_front.001.L
+    400038: fin_front.001.L_end
+    400040: fin_front.001.R
+    400042: fin_front.001.R_end
+    400044: fin_front.L
+    400046: fin_front.R
+    400048: fin_top
+    400050: fin_top_end
+    400052: mouth_bottom
+    400054: mouth_bottom_end
+    400056: mouth_top
+    400058: mouth_top_end
+    400060: //RootNode
+    400062: shark
+    400064: tail
+    400066: tail.001
+    400068: tail.002
+    400070: tail.004
+    400072: tail.005
+    400074: tail.006
+    400076: teeth_b
+    400078: teeth_t
+    2100000: Material
+    2100002: No Name
+    4300000: body
+    4300002: teeth_t
+    4300004: teeth_b
+    7400000: shark|swim
+    9500000: //RootNode
+    13700000: body
+    13700002: teeth_b
+    13700004: teeth_t
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -65,7 +130,35 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: shark|swim
+      takeName: shark|swim
+      firstFrame: 0
+      lastFrame: 72
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
@@ -90,8 +183,8 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 1
-    hasPreviousCalculatedGlobalScale: 0
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -118,7 +211,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
