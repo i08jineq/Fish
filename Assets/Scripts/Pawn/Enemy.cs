@@ -34,7 +34,7 @@ public class Enemy : Pawn
     private IEnumerator DamageEmitEnumerator()
     {
         isEmmitting = true;
-        meshRenderer.material.SetColor("_EmissionColor", Color.white * emmitionValue);
+        meshRenderer.material.SetColor("_EmissionColor", Color.red * emmitionValue);
         while (emmitTImeCount < takeDamageEmmitPeriod)
         {
             emmitTImeCount += Time.deltaTime;
