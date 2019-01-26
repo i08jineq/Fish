@@ -20,6 +20,10 @@ public class GameMain : MonoBehaviour
     private bool isPlaying = false;
     private int totalScore = 0;
     private int nextLevel = 10;
+
+    private const float positionMinZ = -7;
+    private const float positionMaxZ = 10;
+    private const float positionXRange = 20;
     #region init
     private void Awake()
     {
@@ -142,6 +146,7 @@ public class GameMain : MonoBehaviour
             pawnManager.OnUpdate(deltaTime);
             currentStage.OnUpdate(deltaTime);
             attackObjectManager.OnUpdate(deltaTime);
+            ClampPlayerPosition();
         }
     }
 
@@ -185,5 +190,13 @@ public class GameMain : MonoBehaviour
         {
             topPanel.UpdateHPBar(pawn.pawnState.Hp);
         }
+    }
+
+    private void ClampPlayerPosition()
+    {
+        Vector3 pos = Singleton.instance.playerPawn.transform.position;
+        pos.z = Mathf.Clamp(pos.z, positionMinZ, positionMaxZ);
+        pos.x = Mathf.Clamp(pos.x, -positionXRange, positionXRange);
+        Singleton.instance.playerPawn.transform.position = pos;
     }
 }
