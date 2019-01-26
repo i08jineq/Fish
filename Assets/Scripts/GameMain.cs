@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 public class GameMain : MonoBehaviour
 {
     [SerializeField] private Pawn playerPawnPrefab;
@@ -9,6 +10,8 @@ public class GameMain : MonoBehaviour
     [SerializeField] private List<Stage> stages = new List<Stage>();
     [SerializeField] private FadeLayer fadeLayer;
     [SerializeField] private GameOverUI gameOverUI;
+    [SerializeField] private Button pauseButton;
+    [SerializeField] private PauseScreen pauseScreen;
     private PawnManager pawnManager;
     private AttackObjectManager attackObjectManager;
     private Stage currentStage;
@@ -29,6 +32,7 @@ public class GameMain : MonoBehaviour
         SetupEvent();
         SetupAttackObjectManager();
         SetupGameOverUI();
+        SetupPauseScreen();
         yield return null;
         CreatePlayerPawn();
         CreateNimoPawn();
@@ -76,6 +80,17 @@ public class GameMain : MonoBehaviour
         gameOverUI.gameObject.SetActive(false);
         gameOverUI.onClicked.AddListener(OnClickedGameOver);
 
+    }
+
+    private void SetupPauseScreen()
+    {
+        pauseButton.onClick.AddListener(OnClickedPauseButton);
+
+        pauseScreen.Init();
+        pauseScreen.onClickedQuit.AddListener(OnClickedQuit);
+        pauseScreen.onClickedResume.AddListener(OnClickedResume);
+        pauseScreen.onClickedBackTOTitle.AddListener(OnClickedToTitle);
+        pauseScreen.gameObject.SetActive(false);
     }
     #endregion
 
@@ -126,5 +141,27 @@ public class GameMain : MonoBehaviour
     {
         yield return fadeLayer.FadeOutEnumerator(Color.black, 2);
         SceneManager.LoadScene("Title");
+    }
+
+    private void OnClickedPauseButton()
+    {
+        pauseScreen.gameObject.SetActive(true);
+        isPlaying = false;
+    }
+
+    private void OnClickedQuit()
+    {
+        Application.Quit();
+    }
+
+    private void OnClickedResume()
+    {
+        isPlaying = true;
+        pauseScreen.gameObject.SetActive(false);
+    }
+
+    private void OnClickedToTitle()
+    {
+        StartCoroutine(GoBackHomeEnumerator());
     }
 }
