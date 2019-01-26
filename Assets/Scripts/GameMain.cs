@@ -12,7 +12,6 @@ public class GameMain : MonoBehaviour
     private AttackObjectManager attackObjectManager;
     private Stage currentStage;
     private int stageIndex = 0;
-    private const int maxStageIndex = 3;
     private bool isPlaying = false;
 
     #region init
@@ -33,7 +32,7 @@ public class GameMain : MonoBehaviour
         CreatePlayerPawn();
         CreateNimoPawn();
 
-        CreateCurrentIndexStage();
+        CreateCurrentIndexStage(0);
         yield return null;
         
         yield return fadeLayer.FadeInEnumerator(2);
@@ -83,22 +82,19 @@ public class GameMain : MonoBehaviour
 
     private void OnStageCleared()
     {
-        isPlaying = false;
-
         GameObject.Destroy(currentStage.gameObject);
         stageIndex ++; 
-        if(stageIndex > maxStageIndex)
-        {
-
-            return;
-        }
-        CreateCurrentIndexStage();
-
+        CreateCurrentIndexStage(stageIndex);
     }
 
-    private void CreateCurrentIndexStage()
+    private void CreateCurrentIndexStage(int max)
     {
-        currentStage = GameObject.Instantiate<Stage>(stages[stageIndex]);
+        if(max > stages.Count)
+        {
+            max = stages.Count;
+        }
+
+        currentStage = GameObject.Instantiate<Stage>(stages[Random.Range(0,max)]);
         currentStage.Init();
     }
 

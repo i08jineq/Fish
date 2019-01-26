@@ -37,7 +37,6 @@ public class Stage : MonoBehaviour
             if (spawnDatas[i].spawnTime < spawnTimeCount)
             {
                 Pawn pawn = PawnFactory.CreatePawn(spawnDatas[i]);
-                spawnedPawn.Add(pawn);
                 pawn.controller = new AiController();
                 pawn.controller.Init(pawn);
 
