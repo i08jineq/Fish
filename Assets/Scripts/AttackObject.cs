@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class AttackObject : MonoBehaviour
 {
+    protected AttackObjectState _attackObjectState;
+
     Pawn _ownerPawn;
-    float _damage;
 
     public void Init(Pawn ownerPawn)
     {
@@ -14,12 +15,12 @@ public class AttackObject : MonoBehaviour
 
     public void OnUpdate(float deltaTime)
     {
-
+        transform.position += Vector3.forward;
     }
 
     protected virtual void Attack(Pawn attackedPawn)
     {
-        attackedPawn.TakeDamage(_damage);
+        attackedPawn.TakeDamage(_attackObjectState.damage);
     }
 
     private void OnTriggerEnter(Collider other)
