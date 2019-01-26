@@ -7,29 +7,39 @@ public class Pawn : MonoBehaviour
     [SerializeField]
     AttackObject _attackObject;
 
-    int _hp;
+    public PawnState pawnState;
 
     public void Init()
     {
         
     }
 
-    protected virtual void TakeDamage(int damageValue)
+    public void TakeDamage(float damageValue)
     {
-        _hp -= damageValue;
+        pawnState.Hp -= damageValue;
         Singleton.instance.gameEvent.takeDamageEvent.Invoke(this, damageValue);
 
-        if (_hp < 0)
+        if (pawnState.Hp < 0)
         {
             Singleton.instance.gameEvent.deadEvent.Invoke(this);
             Destroy(gameObject);
         }
     }
 
-    protected virtual void SpawnAttackObject()
+    public void SpawnAttackObject()
     {
         var attackObject = Instantiate(_attackObject, transform);
-        attackObject.Init();
+        attackObject.Init(this);
+    }
+
+    public void Move(Vector3 deltaPosition)
+    {
+        transform.position += deltaPosition;
+    }
+
+    public void FaceTo(Vector3 position)
+    {
+        transform.LookAt(position);
     }
 
 }
