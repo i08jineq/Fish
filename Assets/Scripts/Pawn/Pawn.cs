@@ -11,7 +11,7 @@ public class Pawn : MonoBehaviour
     public PawnState pawnState;
     public IController controller;
 
-    public void Init()
+    public virtual void Init()
     {
 
     }
