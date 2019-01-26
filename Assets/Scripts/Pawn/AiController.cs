@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AiController : MonoBehaviour, IController
+public class AiController : IController
 {
     Pawn targetPawn;
     Pawn playerPawn;
@@ -23,7 +23,7 @@ public class AiController : MonoBehaviour, IController
         }
         else
         {
-            targetPawn.Move((playerPawn.transform.position - transform.position).normalized * targetPawn.pawnState.Speed);
+            targetPawn.Move((playerPawn.transform.position - targetPawn.transform.position).normalized * targetPawn.pawnState.Speed);
         }
     }
 }

@@ -6,6 +6,7 @@ public class GameMain : MonoBehaviour
 {
     [SerializeField] private Pawn playerPawnPrefab;
     [SerializeField] private List<Stage> stages = new List<Stage>();
+    private PawnManager pawnManager = new PawnManager();
     private Stage currentStage;
     private int stageIndex = 0;
 
@@ -28,6 +29,8 @@ public class GameMain : MonoBehaviour
     {
         Singleton.instance.playerPawn = GameObject.Instantiate<Pawn>(playerPawnPrefab);
         Singleton.instance.playerPawn.Init();
+        Singleton.instance.playerPawn.controller = new PlayerPawnController();
+
     }
 
     private void SetupEvent()
@@ -48,6 +51,14 @@ public class GameMain : MonoBehaviour
 
     private void OnStageCleared()
     {
-        
+
+
+
+    }
+
+    private void Update()
+    {
+        float deltaTime = Time.deltaTime;
+        pawnManager.OnUpdate(deltaTime);
     }
 }
