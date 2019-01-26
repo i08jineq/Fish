@@ -69,7 +69,8 @@ public class GameMain : MonoBehaviour
 
     private void OnStageCleared()
     {
-
+        isPlaying = false;
+        //GameObject.Instantiate<>
     }
 
     private void CreateCurrentIndexStage()
@@ -85,6 +86,7 @@ public class GameMain : MonoBehaviour
             float deltaTime = Time.deltaTime;
             pawnManager.OnUpdate(deltaTime);
             currentStage.OnUpdate(deltaTime);
+            attackObjectManager.OnUpdate(deltaTime);
         }
 
     }
