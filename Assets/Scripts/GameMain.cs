@@ -25,7 +25,6 @@ public class GameMain : MonoBehaviour
     {
         isPlaying = false;
         yield return Singleton.Init();
-
         SetupPawnManager();
         SetupEvent();
         SetupAttackObjectManager();
