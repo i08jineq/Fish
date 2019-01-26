@@ -76,7 +76,7 @@ public class GameMain : MonoBehaviour
     {
         if (pawn == Singleton.instance.nimoPawn)
         {
-            Debug.Log("Game Over");
+
             isPlaying = false;
         }
     }

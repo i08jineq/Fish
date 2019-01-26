@@ -14,12 +14,14 @@ public class FadeLayer : MonoBehaviour
 
     public IEnumerator FadeInEnumerator(float period)
     {
+        transform.SetAsLastSibling();
         yield return FadeEnumerator(image.color, Color.clear, period);
         gameObject.SetActive(false);
     }
 
     public IEnumerator FadeOutEnumerator(Color color, float period)
     {
+        transform.SetAsLastSibling();
         yield return FadeEnumerator(Color.clear, color, period);
     }
 
