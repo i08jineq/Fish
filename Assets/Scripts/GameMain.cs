@@ -6,11 +6,12 @@ public class GameMain : MonoBehaviour
 {
     [SerializeField] private Pawn playerPawnPrefab;
     [SerializeField] private List<Stage> stages = new List<Stage>();
+
     private PawnManager pawnManager;
     private AttackObjectManager attackObjectManager;
     private Stage currentStage;
     private int stageIndex = 0;
-
+    private const int maxStageIndex = 3;
     private bool isPlaying = false;
 
 
@@ -66,6 +67,7 @@ public class GameMain : MonoBehaviour
     {
         if (pawn == Singleton.instance.playerPawn)
         {
+<<<<<<< HEAD
             Debug.Log("Game Over");
         }
     }
@@ -73,6 +75,25 @@ public class GameMain : MonoBehaviour
     private void OnStageCleared()
     {
 
+=======
+            isPlaying = false;
+            Debug.Log("gameover");
+        }
+    }
+
+    private void OnStageCleared()
+    {
+        isPlaying = false;
+
+        GameObject.Destroy(currentStage.gameObject);
+        stageIndex ++; 
+        if(stageIndex > maxStageIndex)
+        {
+
+            return;
+        }
+        CreateCurrentIndexStage();
+>>>>>>> remotes/origin/dev_shizuku
     }
 
     private void CreateCurrentIndexStage()
@@ -88,7 +109,13 @@ public class GameMain : MonoBehaviour
             float deltaTime = Time.deltaTime;
             pawnManager.OnUpdate(deltaTime);
             currentStage.OnUpdate(deltaTime);
+<<<<<<< HEAD
         }
 
+=======
+            attackObjectManager.OnUpdate(deltaTime);
+        }
+
+>>>>>>> remotes/origin/dev_shizuku
     }
 }

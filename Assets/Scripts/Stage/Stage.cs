@@ -59,7 +59,7 @@ public class Stage : MonoBehaviour
     {
         if (spawnedPawn.Remove(pawn))
         {
-            if (isSpawnedAllPawn)
+            if (isSpawnedAllPawn && spawnedPawn.Count <= 0)
             {
                 Singleton.instance.gameEvent.onStageCleared.Invoke();
             }

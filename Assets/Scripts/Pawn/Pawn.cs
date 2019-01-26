@@ -34,8 +34,9 @@ public class Pawn : MonoBehaviour
 
     public void SpawnAttackObject()
     {
-        var attackObject = Instantiate(_attackObject, transform);
+        var attackObject = Instantiate(_attackObject, transform.position, Quaternion.identity);
         attackObject.Init(this);
+        Singleton.instance.gameEvent.onSpawnedAttackObject.Invoke(attackObject);
     }
 
     public void Move(Vector3 direction)
