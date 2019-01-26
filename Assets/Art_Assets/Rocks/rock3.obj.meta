@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1e717c288dcda4127948954cf6c38318
+guid: 6a42f4cf3308b3342bdc63f180adef82
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -11,7 +11,12 @@ ModelImporter:
     2300000: default
     3300000: default
     4300000: default
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: defaultMat
+    second: {fileID: 2100000, guid: 1dd9c9c607daae84dbcc6297563775b5, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
