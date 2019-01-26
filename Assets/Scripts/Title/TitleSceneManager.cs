@@ -5,10 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class TitleSceneManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] FadeLayer fadeLayer;
+    private void Awake()
     {
-        
+        fadeLayer.ForceColor(Color.black);
+    }
+    // Start is called before the first frame update
+    IEnumerator Start()
+    {
+        yield return fadeLayer.FadeInEnumerator(1);
     }
 
     // Update is called once per frame
@@ -24,7 +29,8 @@ public class TitleSceneManager : MonoBehaviour
 
     private IEnumerator ChangeSceneEnumerator()
     {
-        yield return FadeManager.Instance.FadeOut(2);
+        fadeLayer.gameObject.SetActive(true);
+        yield return fadeLayer.FadeOutEnumerator(Color.black, 2);
         SceneManager.LoadScene("GameScene");
     }
     public void OnClickQuitButton()
