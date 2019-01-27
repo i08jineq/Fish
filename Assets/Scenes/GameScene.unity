@@ -2313,6 +2313,8 @@ MonoBehaviour:
   damageTextLifeTime: 1
   bgm: {fileID: 8300000, guid: eb6a1eeb5d5f34e25880bd437092ee75, type: 3}
   deathSound: {fileID: 8300000, guid: 30f7ab3c535694fcfb1c9665b0f1dac4, type: 3}
+  clickSound: {fileID: 8300000, guid: 4752d298b85774ac2a5d511d520f6ec6, type: 3}
+  hoverSound: {fileID: 8300000, guid: 998e5bf54c3414f8ca2ecdd9ee68b330, type: 3}
 --- !u!4 &465112233
 Transform:
   m_ObjectHideFlags: 0

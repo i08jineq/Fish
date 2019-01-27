@@ -21,6 +21,8 @@ public class GameMain : MonoBehaviour
     [SerializeField] private float damageTextLifeTime = 1;
     [SerializeField] private AudioClip bgm;
     [SerializeField] private AudioClip deathSound;
+    [SerializeField] private AudioClip clickSound;
+    [SerializeField] private AudioClip hoverSound;
 
     private SoundManager soundManager;
     private PawnManager pawnManager;
@@ -58,6 +60,7 @@ public class GameMain : MonoBehaviour
         SetupTopPanel();
         SetupSound();
         yield return null;
+        SetupButtonSound();
         SetupFlockGroup();
         yield return null;
 
@@ -139,6 +142,16 @@ public class GameMain : MonoBehaviour
         flockGroup.Init(Singleton.instance.playerPawn.transform.position);
     }
 
+    private void SetupButtonSound()
+    {
+        Button[] buttons = GetComponentsInChildren<Button>(true);
+        foreach (var item in buttons)
+        {
+            HoverComponent hover = item.gameObject.AddComponent<HoverComponent>();
+            hover.onHovered.AddListener(PlayHoverSound);
+            item.onClick.AddListener(PlayClickSound);
+        }
+    }
     #endregion
 
     private void OnPawnDie(Pawn pawn)
@@ -253,5 +266,15 @@ public class GameMain : MonoBehaviour
         {
             cameraEffect.ShakeCamera(shakeCameraStrength/2, shakeCameraPeriod/2);
         }
+    }
+
+    private void PlayHoverSound()
+    {
+        Singleton.instance.gameEvent.onPlaySoundEffect.Invoke(hoverSound);
+    }
+
+    private void PlayClickSound()
+    {
+        Singleton.instance.gameEvent.onPlaySoundEffect.Invoke(clickSound);
     }
 }
