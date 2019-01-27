@@ -19,6 +19,16 @@ public class GameMain : MonoBehaviour
     [SerializeField] private FlockGroup flockGroup;
     [SerializeField] private DamageText damageText;
     [SerializeField] private float damageTextLifeTime = 1;
+    [SerializeField] private AudioClip bgm;
+    [SerializeField] private AudioClip deathSound;
+    [SerializeField] private AudioClip clickSound;
+    [SerializeField] private AudioClip hoverSound;
+    [SerializeField] private AudioClip powerupSound;
+    [SerializeField] private AudioClip levelupSound;
+    [SerializeField] private RewardUI rewardUI;
+    [SerializeField] private List<PowerUp> powerups = new List<PowerUp>();
+    private PowerUpComponent playerPowerupComponent;
+    private SoundManager soundManager;
     private PawnManager pawnManager;
     private AttackObjectManager attackObjectManager;
     private Stage currentStage;
@@ -26,6 +36,7 @@ public class GameMain : MonoBehaviour
     private bool isPlaying = false;
     private int totalScore = 0;
     private int nextLevel = 10;
+    private int currentLevel = 1;
 
     private const float positionMinZ = -7;
     private const float positionMaxZ = 10;
@@ -52,9 +63,16 @@ public class GameMain : MonoBehaviour
         CreateCurrentIndexStage(0);
 
         SetupTopPanel();
+        SetupSound();
+        yield return null;
+
+        SetupPowerup();
 
         yield return null;
+
+        SetupButtonSound();
         SetupFlockGroup();
+
         yield return null;
 
         yield return fadeLayer.FadeInEnumerator(2);
@@ -108,6 +126,20 @@ public class GameMain : MonoBehaviour
 
     }
 
+    private void SetupPowerup()
+    {
+        playerPowerupComponent = new PowerUpComponent();
+        playerPowerupComponent.Init(Singleton.instance.playerPawn);
+        rewardUI.Init();
+        rewardUI.onSelected.AddListener(OnSelectedReward);
+        rewardUI.gameObject.SetActive(false);
+    }
+
+    private void SetupSound()
+    {
+        soundManager = new SoundManager();
+    }
+
     private void SetupCameraEffect()
     {
         cameraEffect.Init();
@@ -122,6 +154,7 @@ public class GameMain : MonoBehaviour
     private void OnStartGame()
     {
         pauseButton.gameObject.SetActive(true);
+        Singleton.instance.gameEvent.onPlayBGM.Invoke(bgm);
     }
 
     private void SetupFlockGroup()
@@ -129,10 +162,21 @@ public class GameMain : MonoBehaviour
         flockGroup.Init(Singleton.instance.playerPawn.transform.position);
     }
 
+    private void SetupButtonSound()
+    {
+        Button[] buttons = GetComponentsInChildren<Button>(true);
+        foreach (var item in buttons)
+        {
+            HoverComponent hover = item.gameObject.AddComponent<HoverComponent>();
+            hover.onHovered.AddListener(PlayHoverSound);
+            item.onClick.AddListener(PlayClickSound);
+        }
+    }
     #endregion
 
     private void OnPawnDie(Pawn pawn)
     {
+        Singleton.instance.gameEvent.onPlaySoundEffect.Invoke(deathSound);
         if (pawn == Singleton.instance.playerPawn)
         {
             gameOverUI.gameObject.SetActive(true);
@@ -141,11 +185,15 @@ public class GameMain : MonoBehaviour
         else
         {
             totalScore += pawn.score;
-            topPanel.UpdateScore(totalScore, (float)totalScore / nextLevel);
+
             if (totalScore >= nextLevel)
             {
-                Debug.Log("Level Up pause game, Choice powerup");
+                isPlaying = false;
+                OpenRewardScreen();
+                LevelUp();
             }
+
+            topPanel.UpdateScore(totalScore, (float)totalScore / nextLevel);
         }
     }
 
@@ -172,6 +220,7 @@ public class GameMain : MonoBehaviour
             currentStage.OnUpdate(deltaTime);
             attackObjectManager.OnUpdate(deltaTime);
             ClampPlayerPosition();
+            UpdatePowerup(deltaTime);
 
             flockGroup.UpdatePosition(Singleton.instance.playerPawn.transform.position);
             flockGroup.OnUpdate(deltaTime);
@@ -242,5 +291,53 @@ public class GameMain : MonoBehaviour
         {
             cameraEffect.ShakeCamera(shakeCameraStrength/2, shakeCameraPeriod/2);
         }
+    }
+
+    private void PlayHoverSound()
+    {
+        Singleton.instance.gameEvent.onPlaySoundEffect.Invoke(hoverSound);
+    }
+
+    private void PlayClickSound()
+    {
+        Singleton.instance.gameEvent.onPlaySoundEffect.Invoke(clickSound);
+    }
+
+    private void OpenRewardScreen()
+    {
+        int number = rewardUI.buttons.Count;
+        List<PowerUp> allPowerUp = new List<PowerUp>();
+        allPowerUp.AddRange(powerups);
+        List<PowerUp> targetPowerup = new List<PowerUp>();
+        for (int i = 0; i < number; i++)
+        {
+            int targetIndex = Random.Range(0, allPowerUp.Count);
+            targetPowerup.Add(allPowerUp[targetIndex]);
+            allPowerUp.RemoveAt(targetIndex);
+        }
+
+        rewardUI.SetRewards(targetPowerup.ToArray());
+        rewardUI.gameObject.SetActive(true);
+        Singleton.instance.gameEvent.onPlaySoundEffect.Invoke(levelupSound);
+    }
+
+    private void UpdatePowerup(float deltaTime)
+    {
+        playerPowerupComponent.OnUpdate(deltaTime);
+    }
+
+    private void LevelUp()
+    {
+        currentLevel++;
+        nextLevel = currentLevel * 5 + 10;
+    }
+
+    private void OnSelectedReward(PowerUp powerup)
+    {
+        rewardUI.gameObject.SetActive(false);
+        isPlaying = true;
+        playerPowerupComponent.AddPowerUp(powerup);
+        Singleton.instance.gameEvent.onPlaySoundEffect.Invoke(powerupSound);
+
     }
 }

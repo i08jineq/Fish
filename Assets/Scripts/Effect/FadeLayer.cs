@@ -8,6 +8,7 @@ public class FadeLayer : MonoBehaviour
 
     public void ForceColor(Color color)
     {
+        gameObject.SetActive(true);
         transform.SetAsLastSibling();
         image.color = color;
     }

@@ -19,11 +19,13 @@ public class Singleton
         {
             instance = new Singleton();
         }
+        instance.SetupCamera();
         instance.gameEvent = new GameEvent();
+
         yield break;
     }
 
-    public Singleton()
+    public void SetupCamera()
     {
         mainCanvas = GameObject.FindObjectOfType<Canvas>();
         mainCamera = GameObject.FindObjectOfType<Camera>();

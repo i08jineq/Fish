@@ -51,5 +51,6 @@ public class PlayerPawnController : IController
     private void Attack()
     {
         targetPawn.SpawnAttackObject();
+
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-
+using UnityEngine;
 public class GameEvent
 {
     public EventPublisher gameOver = new EventPublisher();
@@ -19,4 +19,8 @@ public class GameEvent
 
     public EventPublisher<AttackObject> onSpawnedAttackObject = new EventPublisher<AttackObject>();
     public EventPublisher<AttackObject> onAttackObjectDestroyed = new EventPublisher<AttackObject>();
+
+    public EventPublisher<AudioClip> onPlaySoundEffect = new EventPublisher<AudioClip>();
+    public EventPublisher<AudioClip> onPlayBGM = new EventPublisher<AudioClip>();
+    public EventPublisher onStopBGM = new EventPublisher();
 }
