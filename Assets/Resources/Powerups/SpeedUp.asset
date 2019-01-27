@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94680e9fc675008428ef42af07ae46ff, type: 3}
   m_Name: SpeedUp
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: 9b185e48c1378684cbda4d4a5a2ce52f, type: 3}
+  icon: {fileID: 21300000, guid: efb15f9dc97a6084da12307e27bbbad9, type: 3}
   powerupName: speed up
-  description: give you the power
+  description: Speed + 5
   amount: 5
