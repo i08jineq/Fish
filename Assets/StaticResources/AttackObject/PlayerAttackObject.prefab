@@ -83,7 +83,8 @@ MonoBehaviour:
     type: 3}
   hitEffectLifeTime: 1.5
   attackSound: {fileID: 8300000, guid: b9a2fb29daae5459d953e1f0f67bf74d, type: 3}
-  hitSounds: []
+  hitSounds:
+  - {fileID: 8300000, guid: c6e882631d2524c558696396b72a669a, type: 3}
 --- !u!1 &6755755539459191614
 GameObject:
   m_ObjectHideFlags: 0

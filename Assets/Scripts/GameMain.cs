@@ -23,6 +23,8 @@ public class GameMain : MonoBehaviour
     [SerializeField] private AudioClip deathSound;
     [SerializeField] private AudioClip clickSound;
     [SerializeField] private AudioClip hoverSound;
+    [SerializeField] private RewardUI rewardUI;
+    [SerializeField] private List<PowerUp> powerups = new List<PowerUp>();
 
     private SoundManager soundManager;
     private PawnManager pawnManager;
@@ -60,8 +62,14 @@ public class GameMain : MonoBehaviour
         SetupTopPanel();
         SetupSound();
         yield return null;
+
+        SetupRewardUI();
+
+        yield return null;
+
         SetupButtonSound();
         SetupFlockGroup();
+
         yield return null;
 
         yield return fadeLayer.FadeInEnumerator(2);
@@ -113,6 +121,12 @@ public class GameMain : MonoBehaviour
         pauseScreen.onClickedBackTOTitle.AddListener(OnClickedToTitle);
         pauseScreen.gameObject.SetActive(false);
 
+    }
+
+    private void SetupRewardUI()
+    {
+        //rewardUI.Init();
+        //rewardUI.gameObject.SetActive(false);
     }
 
     private void SetupSound()
@@ -276,5 +290,23 @@ public class GameMain : MonoBehaviour
     private void PlayClickSound()
     {
         Singleton.instance.gameEvent.onPlaySoundEffect.Invoke(clickSound);
+    }
+
+    private void OpenRewardScreen()
+    {
+        rewardUI.gameObject.SetActive(true);
+        int number = rewardUI.buttons.Count;
+        List<PowerUp> allPowerUp = new List<PowerUp>();
+        allPowerUp.AddRange(powerups);
+        List<PowerUp> targetPowerup = new List<PowerUp>();
+        for (int i = 0; i < number; i++)
+        {
+
+        }
+    }
+
+    private void OnSelectedReward(PowerUp powerup)
+    {
+        rewardUI.gameObject.SetActive(false);
     }
 }
