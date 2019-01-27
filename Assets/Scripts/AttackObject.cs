@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class AttackObject : MonoBehaviour
 {
-    [SerializeField] AttackObjectData _attackObjectState;
-    [SerializeField] GameObject _hitParticleEffect;
-    [SerializeField] float hitEffectLifeTime = 1;
+    [SerializeField] protected AttackObjectData _attackObjectState;
+    [SerializeField] protected GameObject _hitParticleEffect;
+    [SerializeField] protected float hitEffectLifeTime = 1;
+    [SerializeField] protected AudioClip attackSound;
+    [SerializeField] protected AudioClip hitSOund;
     Pawn _ownerPawn;
 
     public void Init(Pawn ownerPawn)
@@ -20,7 +22,7 @@ public class AttackObject : MonoBehaviour
     public void OnUpdate(float deltaTime)
     {
         _attackObjectState.lifeTime += deltaTime;
-        if(_attackObjectState.lifeTime >= _attackObjectState.destroyTime)
+        if (_attackObjectState.lifeTime >= _attackObjectState.destroyTime)
         {
             Singleton.instance.gameEvent.onAttackObjectDestroyed.Invoke(this);
             Destroy(gameObject);
@@ -37,7 +39,7 @@ public class AttackObject : MonoBehaviour
     {
         var pawn = other.GetComponent<Pawn>();
 
-        if(pawn != null && pawn != _ownerPawn)
+        if (pawn != null && pawn != _ownerPawn)
         {
             Attack(pawn);
 

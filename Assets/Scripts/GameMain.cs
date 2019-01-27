@@ -19,6 +19,10 @@ public class GameMain : MonoBehaviour
     [SerializeField] private FlockGroup flockGroup;
     [SerializeField] private DamageText damageText;
     [SerializeField] private float damageTextLifeTime = 1;
+    [SerializeField] private AudioClip bgm;
+    [SerializeField] private AudioClip deathSound;
+
+    private SoundManager soundManager;
     private PawnManager pawnManager;
     private AttackObjectManager attackObjectManager;
     private Stage currentStage;
@@ -52,7 +56,7 @@ public class GameMain : MonoBehaviour
         CreateCurrentIndexStage(0);
 
         SetupTopPanel();
-
+        SetupSound();
         yield return null;
         SetupFlockGroup();
         yield return null;
@@ -108,6 +112,11 @@ public class GameMain : MonoBehaviour
 
     }
 
+    private void SetupSound()
+    {
+        soundManager = new SoundManager();
+    }
+
     private void SetupCameraEffect()
     {
         cameraEffect.Init();
@@ -122,6 +131,7 @@ public class GameMain : MonoBehaviour
     private void OnStartGame()
     {
         pauseButton.gameObject.SetActive(true);
+        Singleton.instance.gameEvent.onPlayBGM.Invoke(bgm);
     }
 
     private void SetupFlockGroup()
@@ -133,6 +143,8 @@ public class GameMain : MonoBehaviour
 
     private void OnPawnDie(Pawn pawn)
     {
+
+        Singleton.instance.gameEvent.onPlaySoundEffect.Invoke(deathSound);
         if (pawn == Singleton.instance.playerPawn)
         {
             gameOverUI.gameObject.SetActive(true);
