@@ -138,7 +138,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Armature|attack
       takeName: Armature|attack
-      firstFrame: 0
+      firstFrame: 10.9
       lastFrame: 25
       wrapMode: 0
       orientationOffsetY: 0
