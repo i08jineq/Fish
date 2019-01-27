@@ -64,7 +64,7 @@ MonoBehaviour:
   score: 1
   pawnState:
     Hp: 10
-    Speed: 10
+    Speed: 5
     TurnSpeed: 5
     ChargeSpeed: 0
     ChargeTurnSpeed: 5
