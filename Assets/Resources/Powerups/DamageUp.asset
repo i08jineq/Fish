@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73d0e82da59434f4584852d8fe1026ef, type: 3}
   m_Name: DamageUp
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: f7288afa62b0f49de9884cba98f10ada, type: 3}
+  icon: {fileID: 21300000, guid: b815f45e7e2bb430bb572351c0f24211, type: 3}
   powerupName: Damge up
   description: Damage + 10
   amount: 10
