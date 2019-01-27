@@ -26,7 +26,7 @@ public class GameMain : MonoBehaviour
     [SerializeField] private AudioClip powerupSound;
     [SerializeField] private AudioClip levelupSound;
     [SerializeField] private RewardUI rewardUI;
-    [SerializeField] private List<PowerUp> powerups = new List<PowerUp>();
+    private List<PowerUp> powerups = new List<PowerUp>();
     private PowerUpComponent playerPowerupComponent;
     private SoundManager soundManager;
     private PawnManager pawnManager;
@@ -128,6 +128,7 @@ public class GameMain : MonoBehaviour
 
     private void SetupPowerup()
     {
+        powerups.AddRange( Resources.LoadAll<PowerUp>("powerups/"));
         playerPowerupComponent = new PowerUpComponent();
         playerPowerupComponent.Init(Singleton.instance.playerPawn);
         rewardUI.Init();
