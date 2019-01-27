@@ -8,7 +8,7 @@ public class AttackObject : MonoBehaviour
     [SerializeField] protected GameObject _hitParticleEffect;
     [SerializeField] protected float hitEffectLifeTime = 1;
     [SerializeField] protected AudioClip attackSound;
-    [SerializeField] protected AudioClip hitSOund;
+    [SerializeField] protected List<AudioClip> hitSounds = new List<AudioClip>();
     Pawn _ownerPawn;
 
     public void Init(Pawn ownerPawn)
@@ -17,6 +17,8 @@ public class AttackObject : MonoBehaviour
         transform.forward = ownerPawn.transform.forward;
         _attackObjectState.startPosition = ownerPawn.transform.position;
         _attackObjectState.startForward = ownerPawn.transform.forward;
+        if (attackSound != null)
+            Singleton.instance.gameEvent.onPlaySoundEffect.Invoke(attackSound);
     }
 
     public void OnUpdate(float deltaTime)
@@ -32,6 +34,12 @@ public class AttackObject : MonoBehaviour
 
     protected virtual void Attack(Pawn attackedPawn)
     {
+        if (hitSounds.Count > 0)
+        {
+            int index = Random.Range(0, hitSounds.Count);
+            Singleton.instance.gameEvent.onPlaySoundEffect.Invoke(hitSounds[index]);
+        }
+
         attackedPawn.TakeDamage(_attackObjectState.damage);
     }
 

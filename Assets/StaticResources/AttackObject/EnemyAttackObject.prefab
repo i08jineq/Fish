@@ -68,6 +68,10 @@ MonoBehaviour:
   _hitParticleEffect: {fileID: 2514186680595665754, guid: 91ac89cc109114637b725aae47524bc4,
     type: 3}
   hitEffectLifeTime: 1
+  attackSound: {fileID: 0}
+  hitSounds:
+  - {fileID: 8300000, guid: e1ee91879dd224f619e0879f4bc1b39c, type: 3}
+  - {fileID: 8300000, guid: 5bbdaaacabe4d4776a78b6136c928fba, type: 3}
 --- !u!65 &8893867108257806277
 BoxCollider:
   m_ObjectHideFlags: 0
