@@ -25,6 +25,10 @@ public class RewardUI : MonoBehaviour
 
     public void SetRewards(PowerUp[] powerUps)
     {
-
+        int count = buttons.Count;
+        for (int i = 0; i < count; i++)
+        {
+            buttons[i].SetPowerup( powerUps[i]);
+        }
     }
 }

@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bde944e96e94048268b78fee55433de8, type: 3}
+  m_Name: Composite HP + Power
+  m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 33c5194e574394977917db206ade1f88, type: 3}
+  powerupName: Super Charge
+  description: 'Hp + 5, Damage + 5 '
+  powerups:
+  - {fileID: 11400000, guid: f535c991819d3460d94da3502659317f, type: 2}
+  - {fileID: 11400000, guid: 16a87696237d6427ca73a02ad5932c00, type: 2}

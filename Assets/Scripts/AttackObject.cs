@@ -15,6 +15,7 @@ public class AttackObject : MonoBehaviour
     {
         _ownerPawn = ownerPawn;
         transform.forward = ownerPawn.transform.forward;
+        _attackObjectState.damage += ownerPawn.pawnState.Damage;
         _attackObjectState.startPosition = ownerPawn.transform.position;
         _attackObjectState.startForward = ownerPawn.transform.forward;
         if (attackSound != null)
