@@ -207,7 +207,7 @@ public class GameMain : MonoBehaviour
 
     private void CreateCurrentIndexStage(int max)
     {
-        int randomIndex = Mathf.Min(max, stages.Count);
+        int randomIndex = Mathf.Min(max + 2, stages.Count);
         currentStage = GameObject.Instantiate<Stage>(stages[Random.Range(0, randomIndex)]);
         currentStage.Init(max);
     }

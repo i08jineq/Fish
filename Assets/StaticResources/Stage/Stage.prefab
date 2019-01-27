@@ -45,8 +45,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnDatas:
   - Pawn: {fileID: 959508338195026428, guid: d9ca651ad43fb4527915208e69eb6077, type: 3}
-    spawnPosition: {x: 10, y: 0, z: 0}
+    spawnPosition: {x: -30, y: 0, z: 0}
     spawnTime: 1
   - Pawn: {fileID: 959508338195026428, guid: d9ca651ad43fb4527915208e69eb6077, type: 3}
-    spawnPosition: {x: 10, y: 0, z: 10}
+    spawnPosition: {x: 30, y: 0, z: 0}
     spawnTime: 1
+  - Pawn: {fileID: 959508338195026428, guid: d9ca651ad43fb4527915208e69eb6077, type: 3}
+    spawnPosition: {x: 10, y: 0, z: 30}
+    spawnTime: 1.5
+  - Pawn: {fileID: 959508338195026428, guid: d9ca651ad43fb4527915208e69eb6077, type: 3}
+    spawnPosition: {x: -10, y: 0, z: 30}
+    spawnTime: 1.75
+  - Pawn: {fileID: 959508338195026428, guid: d9ca651ad43fb4527915208e69eb6077, type: 3}
+    spawnPosition: {x: -20, y: 0, z: 30}
+    spawnTime: 1
+  - Pawn: {fileID: 959508338195026428, guid: d9ca651ad43fb4527915208e69eb6077, type: 3}
+    spawnPosition: {x: 20, y: 0, z: -30}
+    spawnTime: 2
+  - Pawn: {fileID: 959508338195026428, guid: d9ca651ad43fb4527915208e69eb6077, type: 3}
+    spawnPosition: {x: -20, y: 0, z: -30}
+    spawnTime: 2.5
+  - Pawn: {fileID: 959508338195026428, guid: d9ca651ad43fb4527915208e69eb6077, type: 3}
+    spawnPosition: {x: -10, y: 0, z: -30}
+    spawnTime: 2.5
+  - Pawn: {fileID: 959508338195026428, guid: d9ca651ad43fb4527915208e69eb6077, type: 3}
+    spawnPosition: {x: -30, y: 0, z: 30}
+    spawnTime: 3
+  - Pawn: {fileID: 959508338195026428, guid: d9ca651ad43fb4527915208e69eb6077, type: 3}
+    spawnPosition: {x: 30, y: 0, z: 30}
+    spawnTime: 3.2

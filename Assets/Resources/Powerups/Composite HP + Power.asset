@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 33c5194e574394977917db206ade1f88, type: 3}
   powerupName: Super Charge
-  description: 'Hp + 5, Damage + 5 '
+  description: Hp + 1, Damage + 1
   powerups:
   - {fileID: 11400000, guid: f535c991819d3460d94da3502659317f, type: 2}
   - {fileID: 11400000, guid: 16a87696237d6427ca73a02ad5932c00, type: 2}

@@ -15,4 +15,4 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: b815f45e7e2bb430bb572351c0f24211, type: 3}
   powerupName: Hp up
   description: Hp + 5
-  amount: 5
+  amount: 1

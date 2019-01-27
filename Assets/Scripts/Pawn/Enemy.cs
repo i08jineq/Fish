@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enemy : Pawn
 {
     [SerializeField] AttackObject localAttackObject;
-    public SkinnedMeshRenderer meshRenderer;
+    public Renderer meshRenderer;
     [SerializeField] private float resetEmmitionValue = 0;
     [SerializeField] private float emmitionValue = 1;
     [SerializeField] private float takeDamageEmmitPeriod = 0.5f;

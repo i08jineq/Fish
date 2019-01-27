@@ -15,4 +15,4 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: f7288afa62b0f49de9884cba98f10ada, type: 3}
   powerupName: Damge up
   description: Damage + 5
-  amount: 5
+  amount: 1

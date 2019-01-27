@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: f7288afa62b0f49de9884cba98f10ada, type: 3}
   powerupName: Hp up
-  description: Hp + 10
-  amount: 10
+  description: Hp + 3
+  amount: 3

@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: b815f45e7e2bb430bb572351c0f24211, type: 3}
   powerupName: Damge up
-  description: Damage + 10
-  amount: 10
+  description: Damage + 2
+  amount: 2
