@@ -34,7 +34,7 @@ public class GameMain : MonoBehaviour
     private Stage currentStage;
     private int stageIndex = 0;
     private bool isPlaying = false;
-    private int totalScore = 0;
+    private int exp = 0;
     private int nextLevel = 10;
     private int currentLevel = 1;
 
@@ -149,7 +149,7 @@ public class GameMain : MonoBehaviour
     private void SetupTopPanel()
     {
         topPanel.UpdateHPBar(Singleton.instance.playerPawn.pawnState.Hp);
-        topPanel.UpdateScore(totalScore, 0);
+        topPanel.UpdateScore(exp, 0);
     }
 
     private void OnStartGame()
@@ -185,16 +185,16 @@ public class GameMain : MonoBehaviour
         }
         else
         {
-            totalScore += pawn.score;
+            exp += pawn.score;
 
-            if (totalScore >= nextLevel)
+            if (exp >= nextLevel)
             {
                 isPlaying = false;
                 OpenRewardScreen();
                 LevelUp();
             }
 
-            topPanel.UpdateScore(totalScore, (float)totalScore / nextLevel);
+            topPanel.UpdateScore(exp, (float)exp / nextLevel);
         }
     }
 
@@ -331,6 +331,7 @@ public class GameMain : MonoBehaviour
     {
         currentLevel++;
         nextLevel = currentLevel * 5 + 10;
+        exp = 0;
     }
 
     private void OnSelectedReward(PowerUp powerup)

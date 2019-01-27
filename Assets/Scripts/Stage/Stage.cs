@@ -11,9 +11,11 @@ public class Stage : MonoBehaviour
     private List<Pawn> spawnedPawn = new List<Pawn>();
 
     private int spawnableNumber = 0;
-    private float powerLevel = 1;
+    [SerializeField]private float hpMultiplier = 1.5f;
+    private float hpMultiply = 1;
     public void Init(int level)
     {
+        hpMultiply = (level + 1) * hpMultiplier;
         spawnableNumber = Mathf.Min(level + 1, spawnDatas.Count);
         Singleton.instance.gameEvent.onSpawnedPawn.AddListener(OnSpawnedPawn);
         Singleton.instance.gameEvent.deadEvent.AddListener(OnPawnDeath);
@@ -42,7 +44,7 @@ public class Stage : MonoBehaviour
                 Pawn pawn = PawnFactory.CreatePawn(spawnDatas[i]);
                 pawn.controller = new AiController();
                 pawn.controller.Init(pawn);
-
+                pawn.pawnState.Hp *= hpMultiply;
                 spawnDatas.RemoveAt(i);
                 spawnableNumber--;
                 if (spawnableNumber <= 0)
