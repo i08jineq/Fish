@@ -31,7 +31,7 @@ Transform:
   m_LocalPosition: {x: -1.2060413, y: -1.5568757, z: 3.6570287}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4389285758553317499}
+  - {fileID: 2737878415062824411}
   - {fileID: 3027112246599059819}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -59,7 +59,7 @@ MonoBehaviour:
     ChargeTurnSpeed: 3
     Range: 10
     Damage: 50
-  localAttackObject: {fileID: 4389285758553317502}
+  localAttackObject: {fileID: 2737878415062824234}
   meshRenderer: {fileID: 3027112246587332727}
   resetEmmitionValue: 0
   emmitionValue: 1
@@ -111,7 +111,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 5, y: 5, z: 10}
   m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1001 &2737878415062824143
 PrefabInstance:
@@ -197,13 +197,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2048015bfd6978438af8bde7a0e3813, type: 3}
---- !u!4 &4389285758553317499 stripped
+--- !u!4 &2737878415062824411 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1807920157604385972, guid: f2048015bfd6978438af8bde7a0e3813,
     type: 3}
   m_PrefabInstance: {fileID: 2737878415062824143}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4389285758553317502 stripped
+--- !u!114 &2737878415062824234 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1807920157604385969, guid: f2048015bfd6978438af8bde7a0e3813,
     type: 3}

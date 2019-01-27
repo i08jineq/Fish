@@ -59,7 +59,7 @@ MonoBehaviour:
     ChargeTurnSpeed: 100
     Range: 10
     Damage: 0
-  localAttackObject: {fileID: 0}
+  localAttackObject: {fileID: 8140937748146123647}
   meshRenderer: {fileID: 2300000}
   resetEmmitionValue: 1
   emmitionValue: 2
@@ -107,7 +107,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1.5, y: 1.5, z: 1.5}
   m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1001 &7632878379914913742
 PrefabInstance:
@@ -199,6 +199,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 7632878379914913742}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8140937748146123647 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1807920157604385969, guid: 45d8db7d265cd4411a9e37804a55e203,
+    type: 3}
+  m_PrefabInstance: {fileID: 7632878379914913742}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b62f830fdf65eb24086d6a8f1f4df65d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8010400194051414891
 PrefabInstance:
   m_ObjectHideFlags: 0
