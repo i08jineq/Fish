@@ -13,7 +13,8 @@ public class SoundManager
         bgm = bgmObject.AddComponent<AudioSource>();
 
         GameObject effectObject = new GameObject("FX Source");
-        soundEffect = effectObject.GetComponent<AudioSource>();
+        soundEffect = effectObject.AddComponent<AudioSource>();
+
         Singleton.instance.gameEvent.onPlayBGM.AddListener(OnPlayBGM);
         Singleton.instance.gameEvent.onPlaySoundEffect.AddListener(OnPlaySoundEffect);
         Singleton.instance.gameEvent.onStopBGM.AddListener(OnStopBGM);

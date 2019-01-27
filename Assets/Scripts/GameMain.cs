@@ -143,7 +143,6 @@ public class GameMain : MonoBehaviour
 
     private void OnPawnDie(Pawn pawn)
     {
-
         Singleton.instance.gameEvent.onPlaySoundEffect.Invoke(deathSound);
         if (pawn == Singleton.instance.playerPawn)
         {
